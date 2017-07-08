@@ -12,8 +12,20 @@
     <meta property="og:description" content="An addicting numbers puzzle game.">
     <meta name="description" content="An addicting numbers puzzle game.">
 
-    <!-- End Facebook Metadata -->
-    <script src="scripts/production.min.js"></script>
+    <!-- commented minify js drawal End Facebook Metadata
+  //  <script src="scripts/production.js"></script>  -->
+	<script src="scripts/lib/jquery-2.1.1.min.js"></script>
+     <script src="scripts/lib/jquery.touchSwipe.min.js"></script>
+      <script src="scripts/core.js"></script>,
+      <script src="scripts/modules/Board.js"></script>
+       <script src="scripts/modules/Keyboard.js"></script>
+      <script src="scripts/modules/Manager.js"></script>
+	<script src="scripts/modules/Overlay.js"></script>
+     <script src="scripts/modules/Selector.js"></script>
+      <script src="scripts/modules/StateData.js"></script>
+       <script src="scripts/modules/Story.js"></script>
+       <script src="scripts/modules/Swipe.js"></script>
+      <script src="scripts/modules/Window.js"></script>
     <link href='http://fonts.googleapis.com/css?family=Poiret+One|Open+Sans' rel='stylesheet' type='text/css'>
     <link href="styles/style.css" rel="stylesheet" type="text/css" />
     <link href="styles/mobile.css" rel="stylesheet" type="text/css" media="screen and (max-device-width:800px)" />
@@ -84,6 +96,10 @@
         <div id="introtutorial"></div>
         <table id="board">
           <tbody id="board_body">
+		   <tr>
+		   <td colspan="2">  <a id="watch" class="light poiret center"> </a></td>
+		   <td colspan="2">  <a id="moves" class="light poiret center"> </a></td>
+		    </tr>
             <tr>
               <td class="cell center" data-x="0" data-y="0">4</td>
               <td class="cell center" data-x="1" data-y="0">4</td>

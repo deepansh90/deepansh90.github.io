@@ -45,10 +45,18 @@ a:hover {
 /* Begin IDs */
 
 #title {
-  font-size:6.9vh;
-  font-weight:bold;
-  margin-top:3vh;
+  font-size:6vh;
+  margin-top:-1vh;
 }
+#watch{
+	 font-family:'digital-clock-font';
+    float:left;
+}
+#moves{
+    float:right;
+	text-align: center;
+}
+
 
 #container {
   margin:0 auto;
@@ -62,7 +70,7 @@ a:hover {
 }
 
 #level {
-  font-size:4.5vh;
+  font-size:3.5vh;
 }
 
 #loader {
@@ -125,7 +133,7 @@ a:hover {
 }
 
 #overlay h1 {
-  color:#fff;
+  color:#bbb;
   padding:3vh;
   font-family:'Poiret One', cursive;
   font-size:5vh;
@@ -140,7 +148,7 @@ a:hover {
 
 #overlay p {
   padding:10px;
-  color:#fff;
+  color:#ddd;
   font-family:'Poiret One', sans-serif;
 }
 
@@ -187,7 +195,7 @@ a:hover {
 /* This button was generated using CSSButtonGenerator.com */
 
 #overlay #content {
-  color:#fff;
+  color:#ddd;
   font-size:4vh;
   font-family:'Poiret One', sans-serif;
 }
@@ -195,14 +203,14 @@ a:hover {
 
 /* Begin Classes */
 .cell {
-  font-family: Tahoma, Geneva, sans-serif;
-  font-size:6.9vh;
-  color:#000;
+  font-family: 'Open Sans', sans-serif;
+  font-size:6.6vh;
+  color:#555;
   width:20vh; /* Not 120px because otherwise cells are different widths */
   height:20vh;
-  background-color:#B28C5B;
+  background-color:#999;
   padding:0;
-  border:1.3px solid #333;
+  border:1px solid #333;
   box-sizing:border-box;
 }
 
@@ -227,7 +235,7 @@ a:hover {
 }
 
 .light {
-  color:#7d9bc2;
+  color:#ddd;
 }
 
 .black {

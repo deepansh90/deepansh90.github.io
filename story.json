@@ -60,6 +60,49 @@
     "initialSelected": { "x":1, "y":2 }
   },
   {
+    "type": "level",
+    "number": 7,
+    "mode": "vanilla",
+    "contents": [ 4,3,3,3,1,2,5,3,5 ],
+    "initialSelected": { "x":0, "y":2 }
+  },
+  {
+    "type": "level",
+    "number": 8,
+    "mode": "vanilla",
+    "contents": [ -7,-9,-7,-8,-12,-9,-6,-7,-7 ],
+    "initialSelected": { "x":1, "y":2 }
+  },
+  {
+    "type": "level",
+    "number": 9,
+    "mode": "vanilla",
+    "contents": [ 6,4,5,5,3,4,5,4,5 ],
+    "initialSelected": { "x":2, "y":1 }
+  },
+  {
+    "type": "level",
+    "number": 10,
+    "mode": "vanilla",
+    "contents": [ 9,7,8,8,5,6,9,8,7 ],
+    "initialSelected": { "x":0, "y":1 }
+  },
+  {
+    "type": "level",
+    "number": 11,
+    "mode": "vanilla",
+    "contents": [ 5,4,6,3,0,4,4,4,6 ],
+    "initialSelected": { "x":2, "y":0 }
+  },
+  {
+    "type": "level",
+    "number": 12,
+    "mode": "vanilla",
+    "contents": [-1,-4,1,1,0,3,3,3,3],
+    "initialSelected": { "x": 2, "y": 1 },
+    "solution": [ "l","u","r","l","l","d","u","r","l","r","r","l","d","u","l","d","r","u" ]
+  },
+  {
     "type": "instruction",
     "title": "The End!",
     "text": "You've successfully completed all of the levels Parity currently has to offer. If you enjoyed the challenge, please make sure to share with Others!",

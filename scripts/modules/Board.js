@@ -6,6 +6,8 @@ var Board = (function() {
   var levelLink;
   var overlay;
   var resetLink;
+  var moves_per_level=0;
+  var clear_time;
 
 
   // Variables for the page
@@ -15,6 +17,7 @@ var Board = (function() {
 
   // Resets the level to its original state
   var reset = function() {
+	     clearTimeout(clear_time);
     render(level);
   };
 
@@ -73,6 +76,39 @@ var Board = (function() {
     }
     return true;
   }
+  
+
+  function startTimer(allowed_time, display) {
+    var start = Date.now(),
+        diff,
+        minutes,
+        seconds;
+    function timer() {
+        // get the number of seconds that have elapsed since 
+        // startTimer() was called
+      diff = allowed_time - (((Date.now() - start) / 1000) | 0);
+	// for total timer   diff =  (((Date.now() - start) / 1000) | 0);
+
+        // does the same job as parseInt truncates the float
+        minutes = (diff / 60) | 0;
+        seconds = (diff % 60) | 0;
+        minutes = minutes < 10 ? "0" + minutes : minutes;
+        seconds = seconds < 10 ? "0" + seconds : seconds;
+        display.textContent = minutes + ":" + seconds; 
+
+		
+        if (diff <= 0) {
+            // add one second so that the count down starts at the full allowed_time example 05:00 not 04:59
+            //start = Date.now() + 1000;
+			alert("Time's Up. Try again?");
+			 clearTimeout(clear_time);
+			 render(level);
+        }
+    };
+    // we don't want to wait a full second before the timer starts
+   timer();
+    clear_time = setInterval(timer, 1000);
+}
 
   // Selects the cell to the left of the current cell
   function left() {
@@ -108,6 +144,8 @@ var Board = (function() {
 
   // Selects a cell and modifies it's value if necessary
   function select(x, y) {
+	  	moves_per_level++;
+	  	moveslink.html('Moves: ' + moves_per_level);
     var sel = level.selected;
     if(cells[sel.x][sel.y].hasClass('black')) {
       cell(sel.x, sel.y, cell(sel.x, sel.y)-1);
@@ -132,10 +170,17 @@ var Board = (function() {
 
   // Initially draws the level's cells
   var render = function(data) {
+	level = data;
+	moves_per_level =0;
+	moveslink.html('Moves: ' + moves_per_level);
+	var allowed_time = 60 * (5 + (level.number/10 | 0)),
+    display = document.querySelector('#watch');
+	clearTimeout(clear_time);
+	startTimer(allowed_time, display);
     // Deactivate previous overlays
     mediator.publish('overlay_set_inactive');
 
-    level = data;
+    
 
     // Show the level 1 tutorial if necessary
     if(level.number == "1") {
@@ -165,7 +210,8 @@ var Board = (function() {
     };
 
     // Set the level text
-    levelLink.html('level ' + level.number + '/' + numLevels);
+    levelLink.html('Level ' + level.number + '/' + numLevels);
+
 
     // Fade in once populated
     board.fadeIn(options.fade, function() {
@@ -218,6 +264,7 @@ var Board = (function() {
     levelLink = $('#level');
     overlay = $('#overlay');
     resetLink = $('#reset');
+	moveslink = $('#moves');
 
     // Cells on the board
     for(var i = 0; i < 4; ++i) {
