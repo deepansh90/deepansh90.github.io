@@ -30,13 +30,36 @@ p {
 }
 
 a {
-  font-family:'Poiret One', cursive;
   text-decoration:none;
-  color:#888;
+  color:white;
 }
 
 a:hover {
   color:#fff;
+}
+
+#level_overlay {
+    position: fixed;
+    display: none;
+    width: 40%;
+    height: 100%;
+    top: 0;
+    left: 30%;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0,0,0,0.9);
+    z-index: 2;
+    cursor: pointer;
+}
+
+#level_overlay_text{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    font-size: 50px;
+    color: white;
+    transform: translate(-50%,-50%);
+    -ms-transform: translate(-50%,-50%);
 }
 
 /* End HTML element styling */
@@ -45,9 +68,29 @@ a:hover {
 /* Begin IDs */
 
 #title {
-  font-size:6vh;
-  margin-top:-1vh;
+  font-size:6.9vh;
+  font-weight:bold;
+  margin-top:1vh;
 }
+#level_number {
+  font-size:6.9vh;
+  font-weight:bold;
+}
+
+#level_watch {
+  font-size:5vh;
+  font-weight:bold;
+  color: antiquewhite;
+   padding-top: 10%;
+}
+
+#level_moves{
+  font-size:5vh;
+  font-weight:bold;
+      padding-top: 10%;
+    color: antiquewhite;
+}
+
 #watch{
 	 font-family:'digital-clock-font';
     float:left;
@@ -56,7 +99,9 @@ a:hover {
     float:right;
 	text-align: center;
 }
-
+#emptyspace{
+	padding-top:3%;
+}
 
 #container {
   margin:0 auto;
@@ -70,7 +115,7 @@ a:hover {
 }
 
 #level {
-  font-size:3.5vh;
+  font-size:4.5vh;
 }
 
 #loader {
@@ -104,6 +149,19 @@ a:hover {
   opacity:0.5;
 }
 
+#homeImage {
+	  background-image:url('../images/home.png');
+  width:66vh;
+  height:94vh;
+  background-position: center center;
+  background-size:contain;
+  background-repeat:no-repeat;
+  position: fixed;
+  display:fixed;	
+  font-family:'Poiret One', sans-serif;
+}
+
+
 /* A giant transparent overlay for swiping. It simplifies everything */
 #swipeArea {
   width:66vh;
@@ -133,7 +191,7 @@ a:hover {
 }
 
 #overlay h1 {
-  color:#bbb;
+  color:#fff;
   padding:3vh;
   font-family:'Poiret One', cursive;
   font-size:5vh;
@@ -148,7 +206,7 @@ a:hover {
 
 #overlay p {
   padding:10px;
-  color:#ddd;
+  color:#fff;
   font-family:'Poiret One', sans-serif;
 }
 
@@ -189,13 +247,20 @@ a:hover {
 	background-color:#3e474f;
 }
 
+#gameButtons {
+	position: relative;
+    padding-top: 90%;
+	left: 29%;
+
+}
+
 #overlay button:active, .active {
   bottom:10vh;
 }
 /* This button was generated using CSSButtonGenerator.com */
 
 #overlay #content {
-  color:#ddd;
+  color:#fff;
   font-size:4vh;
   font-family:'Poiret One', sans-serif;
 }
@@ -203,16 +268,27 @@ a:hover {
 
 /* Begin Classes */
 .cell {
-  font-family: 'Open Sans', sans-serif;
-  font-size:6.6vh;
-  color:#555;
+  font-family: "Clear Sans", "Helvetica Neue", Arial, sans-serif;
+  font-size:6.9vh;
+  color:#000;
   width:20vh; /* Not 120px because otherwise cells are different widths */
   height:20vh;
-  background-color:#999;
+  background-color:#f59563;
   padding:0;
-  border:1px solid #333;
+  border:1.5px solid #684A14;
   box-sizing:border-box;
 }
+.rcorners1 {
+    border:1px #333 solid;   
+    padding:3px;
+    background-color:#fdbe25;
+    border-radius:40px;
+	width: 40%;
+	color:white;
+	font-weight:bold;
+	font-family: cursive;
+}
+
 
 .selected {
   /*background-color:#444;*/
@@ -235,7 +311,7 @@ a:hover {
 }
 
 .light {
-  color:#ddd;
+  color:#63c3f5;
 }
 
 .black {
@@ -278,13 +354,18 @@ a:hover {
   display:none;
 }
 
-.fb-like {
-  position:absolute !important;
-  bottom:20px;
-  left:20px;
+.btnclose {
+  -webkit-border-radius: 28;
+  -moz-border-radius: 28;
+  border-radius: 28px;
+  font-size: 28px;
+  background: #3498db;
+  padding: 10px 20px 10px 20px;
+  text-decoration: none;
+  text-align: center;
 }
 
-/* Hides the "flyout" comment box when Facebook like button is clicked */
-.fb_edge_widget_with_comment span.fb_edge_comment_widget iframe.fb_ltr {
-  display: none !important;
+.btnclose:hover {
+  background: #3cb0fd;
+  text-decoration: none;
 }

@@ -4,11 +4,13 @@ var Board = (function() {
   var board;
   var cells = [];
   var levelLink;
+  var level_number;
   var overlay;
   var resetLink;
   var moves_per_level=0;
   var clear_time;
-
+  var minutes;
+  var seconds;
 
   // Variables for the page
   var active = false;
@@ -17,7 +19,6 @@ var Board = (function() {
 
   // Resets the level to its original state
   var reset = function() {
-	     clearTimeout(clear_time);
     render(level);
   };
 
@@ -49,6 +50,10 @@ var Board = (function() {
     }
 
     if(isWin()) {
+	  	level_watch.html('Total Time : ' + minutes + " : " + seconds );
+		  level_moves.html('Total Moves : ' + moves_per_level );
+		  level_number.html('Level ' + level.number + ' completed!');
+		  level_overlay_on();
       board.fadeOut(options.fade, function() {
         mediator.publish('board_level_complete');
         mediator.publish('board_faded_out');
@@ -78,11 +83,24 @@ var Board = (function() {
   }
   
 
+  	  function level_overlay_on() {
+        document.getElementById("level_overlay").style.display = "block";
+	      document.getElementById("selector").style.display = "none";
+      }
+      
+      function level_overlay_off() {
+        document.getElementById("level_overlay").style.display = "none";
+        document.getElementById("selector").style.display = "block";
+	    }
+
+
+  
+
   function startTimer(allowed_time, display) {
-    var start = Date.now(),
-        diff,
-        minutes,
-        seconds;
+      var start = Date.now(),
+        diff;
+        minutes=0;
+        seconds=0;
     function timer() {
         // get the number of seconds that have elapsed since 
         // startTimer() was called
@@ -212,7 +230,6 @@ var Board = (function() {
     // Set the level text
     levelLink.html('Level ' + level.number + '/' + numLevels);
 
-
     // Fade in once populated
     board.fadeIn(options.fade, function() {
       // Move the selector to the right place
@@ -265,6 +282,11 @@ var Board = (function() {
     overlay = $('#overlay');
     resetLink = $('#reset');
 	moveslink = $('#moves');
+	close_overlay = $('#close_overlay');
+	
+	level_number = $('#level_number');
+	level_moves = $('#level_moves');
+	level_watch = $('#level_watch');
 
     // Cells on the board
     for(var i = 0; i < 4; ++i) {
@@ -276,6 +298,7 @@ var Board = (function() {
 
     // Event bindings
     resetLink.on('click', reset);
+	close_overlay.on('click', level_overlay_off);
   };
 
   // The facade
