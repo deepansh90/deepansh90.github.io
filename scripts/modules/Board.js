@@ -84,11 +84,13 @@ var Board = (function() {
   
 
   	  function level_overlay_on() {
-        document.getElementById("level_overlay").style.display = "block";
+		document.getElementById("box").style.display = "none";
+		document.getElementById("level_overlay").style.display = "block";
 	      document.getElementById("selector").style.display = "none";
       }
       
       function level_overlay_off() {
+		document.getElementById("box").style.display = "block";
         document.getElementById("level_overlay").style.display = "none";
         document.getElementById("selector").style.display = "block";
 	    }
@@ -297,8 +299,13 @@ var Board = (function() {
     }
 
     // Event bindings
+	var action =function(){
+		level_overlay_off();
+		render(level);
+	};
     resetLink.on('click', reset);
-	close_overlay.on('click', level_overlay_off);
+	close_overlay.on('click',action);
+	
   };
 
   // The facade
