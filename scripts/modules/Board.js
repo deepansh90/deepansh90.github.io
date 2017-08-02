@@ -11,7 +11,16 @@ var Board = (function() {
   var clear_time;
   var minutes;
   var seconds;
+    var currentScore, score, bestScore, secondScore, thirdScore;
+    var leaderboardIDs;
+    var bestScores = '';
+    var currentTime, currentMoves;
 
+   
+
+ $.getJSON("leaderboards.json", function(result) {
+        leaderboardIDs = result;
+    });
   // Variables for the page
   var active = false;
   var level; // Contains the level data
@@ -49,22 +58,63 @@ var Board = (function() {
       }
     }
 
-    if(isWin()) {
-	  	level_watch.html('Total Time : ' + minutes + " : " + seconds );
-		  level_moves.html('Total Moves : ' + moves_per_level );
-		  level_number.html('Level ' + level.number + ' completed!');
-		  level_overlay_on();
-      board.fadeOut(options.fade, function() {
-        mediator.publish('board_level_complete');
-        mediator.publish('board_faded_out');
-      });
-      // Hide the intro tutorial if needbe
-      $('#introtutorial').fadeOut(options.fade);
+        if (isWin()) {
 
-
-      mediator.publish('board_fade_out');
-    }
-  };
+            currentScore = 400 - moves_per_level - ((4 - minutes) * 60 + 60 - seconds);
+            currentTime = minutes + ":" + seconds;
+            currentMoves = moves_per_level;
+            gapi.client.request({
+                path: '/games/v1/leaderboards/' + leaderboardIDs[level.number].id + '/scores',
+                params: { leaderboardId: leaderboardIDs[level.number].id, score: currentScore },
+                method: 'post',
+                callback: function(response) {
+                    gapi.client.request({
+                        path: '/games/v1/leaderboards/' + leaderboardIDs[level.number].id + '/scores/public',
+                        params: { maxResults: 3, timeSpan: "ALL_TIME" },
+                        callback: function(response) {
+                        if(response.error==null){
+                            
+                            if (response.items.length == 0) {
+                                bestScore = 0;
+                                secondScore = 0;
+                                thirdScore = 0;
+                            } else if (response.items.length == 1) {
+                                bestScore = response.items[0].formattedScore;
+                                secondScore = 0;
+                                thirdScore = 0;
+                            } else if (response.items.length == 2) {
+                                bestScore = response.items[0].formattedScore;
+                                secondScore = response.items[1].formattedScore;
+                                thirdScore = 0;
+                            } else {
+                                bestScore = response.items[0].formattedScore;
+                                secondScore = response.items[1].formattedScore;
+                                thirdScore = response.items[3].formattedScore;
+                            }
+                            bestScores = bestScore + '<br/>' + secondScore + '<br/>' + thirdScore;
+                            level_best_score.html(bestScores);
+                            }else
+							{
+								alert("error while accessing global scores " + response.error.code);
+							}
+							level_your_score.html("Your Score : " + currentScore);
+              	level_watch.html('Total Time : ' + minutes + " : " + seconds );
+                 level_moves.html('Total Moves : ' + moves_per_level );
+                 level_number.html('Level ' + level.number + ' completed!');
+                            level_overlay_on();
+                            board.fadeOut(options.fade, function() {
+                                mediator.publish('board_level_complete');
+                                mediator.publish('board_faded_out');
+                            });
+                            // Hide the intro tutorial if needbe
+                            $('#introtutorial').fadeOut(options.fade);
+                            mediator.publish('board_fade_out');
+                        }
+                    });
+                }
+            });
+        }
+    };
 
   var updateMuteButton = function(volume) {
     toggleMuteLink.html(volume ? 'mute' : 'unmute');
@@ -84,13 +134,15 @@ var Board = (function() {
   
 
   	  function level_overlay_on() {
-		document.getElementById("box").style.display = "none";
+        document.getElementById("box").style.display = "none";
+        document.getElementById("title").style.display = "none";
 		document.getElementById("level_overlay").style.display = "block";
 	      document.getElementById("selector").style.display = "none";
       }
       
       function level_overlay_off() {
-		document.getElementById("box").style.display = "block";
+        document.getElementById("box").style.display = "block";
+        document.getElementById("title").style.display = "block";
         document.getElementById("level_overlay").style.display = "none";
         document.getElementById("selector").style.display = "block";
 	    }
@@ -287,8 +339,10 @@ var Board = (function() {
 	close_overlay = $('#close_overlay');
 	
 	level_number = $('#level_number');
-	level_moves = $('#level_moves');
-	level_watch = $('#level_watch');
+        level_best_score = $('#level_best_score');
+        level_moves = $('#level_moves');
+        level_watch = $('#level_watch');
+        level_your_score = $('#level_your_score');
 
     // Cells on the board
     for(var i = 0; i < 4; ++i) {

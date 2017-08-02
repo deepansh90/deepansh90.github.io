@@ -2,6 +2,16 @@
 <html>
   <head>
     <title>Equalize</title>
+    <!--Google play services-->
+    <script src="scripts/modules/google-api.js"></script>
+    <meta name="google-signin-client_id" content="37577202708-pe4bn8r7sun8fq2ropnjqf79pi5c6g9v.apps.googleusercontent.com" />
+    <meta name="google-signin-cookiepolicy" content="single_host_origin" />
+    <meta name="google-signin-callback" content="signinCallback" />
+    <meta name="google-signin-scope" content="https://www.googleapis.com/auth/games" />
+
+    <script src="https://apis.google.com/js/client.js"></script>
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+
     <!-- Begin Facebook Metadata -->
     <meta property="fb:app_id" content="916448168386651" />
     <meta property="og:url" content="http://abefehr.com/parity/" />
@@ -46,12 +56,20 @@
   <body>
     <!-- Begin Clay -->
     <script>
-      (function(C,l,a,y,_,i,o){C[_]=C[_]||function(){
-      (C[_].q=C[_].q||[]).push(arguments)},C[_].l=1*new Date();i=l.createElement(a),
-      o=l.getElementsByTagName(a)[0];i.async=1;i.src=y;o.parentNode.insertBefore(i,o)
-      })(window,document,'script','https://cdn.wtf/sdk/v1/clay_sdk.js','Clay');
-      
-      Clay('init', {gameId: '8304'})
+        (function(C, l, a, y, _, i, o) {
+            C[_] = C[_] || function() {
+                (C[_].q = C[_].q || []).push(arguments)
+            }, C[_].l = 1 * new Date();
+            i = l.createElement(a),
+                o = l.getElementsByTagName(a)[0];
+            i.async = 1;
+            i.src = y;
+            o.parentNode.insertBefore(i, o)
+        })(window, document, 'script', 'https://cdn.wtf/sdk/v1/clay_sdk.js', 'Clay');
+
+        Clay('init', {
+            gameId: '8304'
+        })
     </script>
     <!-- commented drawal Begin Facebook SDK 
       <script>
@@ -73,6 +91,16 @@
       </script>
       <!-- End Facebook SDK -->
     <div id="container">
+        <div class="g-signin2" data-onsuccess="handleAuthResult"></div>
+        <!--<a href="#" onclick="signOut();" id="signout" style="display: none">Sign out</a>-->
+        <script>
+            function signOut() {
+                var auth2 = gapi.auth2.getAuthInstance();
+                auth2.signOut().then(function() {
+                    console.log('User signed out.');
+                });
+            }
+        </script>
       <p id="title" class="light poiret center">Equalize</p>
       <div id="box">
         <div id="overlay">
@@ -122,6 +150,8 @@
 	  <div id="level_overlay" onclick="level_overlay_off()">
 		 <div id="level_overlay_text">
           <div id="level_number" class="light poiret center">   </div>
+                <div id="level_best_score"> </div>
+                <div id="level_your_score"> </div>
           <div id="level_moves" > </div>
           <div id="level_watch" > </div>
 		  <div id="emptyspace"> </div>

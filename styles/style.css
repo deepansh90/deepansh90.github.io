@@ -77,17 +77,13 @@ a:hover {
   font-weight:bold;
 }
 
-#level_watch {
-  font-size:5vh;
-  font-weight:bold;
-  color: antiquewhite;
-   padding-top: 10%;
-}
-
-#level_moves{
-  font-size:5vh;
-  font-weight:bold;
-      padding-top: 10%;
+#level_watch,
+#level_best_score,
+#level_your_score,
+#level_moves {
+    font-size: 4vh;
+    font-weight: bold;
+  padding-top: 10%;
     color: antiquewhite;
 }
 
