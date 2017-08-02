@@ -39,15 +39,15 @@ a:hover {
 }
 
 #level_overlay {
-	border:1px #333 solid;   
+	border:15px #fff solid;   
     padding:3px;
-    background-color:rgba(237,106,54,0.9);
+   
     border-radius:40px;
     position: fixed;
     display: none;
     width: 40%;
     height: 50%;
-    top: 10%;
+    top: 20%;
     left: 30%;
     right: 0;
     bottom: 0;
@@ -268,6 +268,16 @@ a:hover {
   font-size:4vh;
   font-family:'Poiret One', sans-serif;
 }
+
+#tutorial img { display: none; }
+
+#tutorial.currently-loading img { 
+    display: block; 
+    width: 100%;
+    heigth: 100%;
+}
+
+
 /* End IDs */
 
 /* Begin Classes */
@@ -367,17 +377,38 @@ a:hover {
 }
 
 .btnclose {
-  -webkit-border-radius: 28;
-  -moz-border-radius: 28;
-  border-radius: 28px;
-  font-size: 28px;
-  background: #3498db;
-  padding: 10px 20px 10px 20px;
-  text-decoration: none;
-  text-align: center;
+	-moz-box-shadow:inset 0px 1px 0px 0px #b3b3b3;
+	-webkit-box-shadow:inset 0px 1px 0px 0px #b3b3b3;
+	box-shadow:inset 0px 1px 0px 0px #b3b3b3;
+	background-color:#707070;
+	-webkit-border-top-left-radius:0px;
+	-moz-border-radius-topleft:0px;
+	border-top-left-radius:0px;
+	-webkit-border-top-right-radius:0px;
+	-moz-border-radius-topright:0px;
+	border-top-right-radius:0px;
+	-webkit-border-bottom-right-radius:0px;
+	-moz-border-radius-bottomright:0px;
+	border-bottom-right-radius:0px;
+	-webkit-border-bottom-left-radius:0px;
+	-moz-border-radius-bottomleft:0px;
+	border-bottom-left-radius:0px;
+	text-indent:0;
+	border:1px solid #000000;
+	display:inline-block;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:3vh;
+	font-weight:bold;
+	font-style:normal;
+	height:10vh;
+  min-width:26vh;
+	line-height:2.4vh;
+	text-decoration:none;
+	text-align:center;
+	text-shadow:1px 1px 0px #2e4d6b;
 }
 
 .btnclose:hover {
-  background: #3cb0fd;
-  text-decoration: none;
+	background-color:#3e474f;
 }
