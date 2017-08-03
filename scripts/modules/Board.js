@@ -60,7 +60,7 @@ var Board = (function() {
 
         if (isWin()) {
 
-            currentScore = 400 - moves_per_level - ((4 - minutes) * 60 + 60 - seconds);
+            currentScore = 1000 - (moves_per_level*5) - (( minutes * 60) +  seconds);
             currentTime = minutes + ":" + seconds;
             currentMoves = moves_per_level;
             gapi.client.request({
@@ -91,7 +91,7 @@ var Board = (function() {
                                 secondScore = response.items[1].formattedScore;
                                 thirdScore = response.items[3].formattedScore;
                             }
-                            bestScores = bestScore + '<br/>' + secondScore + '<br/>' + thirdScore;
+                            bestScores = 'Best Score: ' + bestScore + '<br/>' + 'Second Score: ' + secondScore + '<br/>' + 'Third Score: ' + thirdScore;
                             level_best_score.html(bestScores);
                             }else
 							{
@@ -158,24 +158,15 @@ var Board = (function() {
     function timer() {
         // get the number of seconds that have elapsed since 
         // startTimer() was called
-      diff = allowed_time - (((Date.now() - start) / 1000) | 0);
-	// for total timer   diff =  (((Date.now() - start) / 1000) | 0);
+      diff = (((Date.now() - start) / 1000) | 0);
+	// for stopwatch allowed_time - (((Date.now() - start) / 1000) | 0);
 
         // does the same job as parseInt truncates the float
         minutes = (diff / 60) | 0;
         seconds = (diff % 60) | 0;
         minutes = minutes < 10 ? "0" + minutes : minutes;
         seconds = seconds < 10 ? "0" + seconds : seconds;
-        display.textContent = minutes + ":" + seconds; 
-
-		
-        if (diff <= 0) {
-            // add one second so that the count down starts at the full allowed_time example 05:00 not 04:59
-            //start = Date.now() + 1000;
-			alert("Time's Up. Try again?");
-			 clearTimeout(clear_time);
-			 render(level);
-        }
+        display.textContent = minutes + ":" + seconds;  
     };
     // we don't want to wait a full second before the timer starts
    timer();
