@@ -91,7 +91,7 @@
       </script>
       <!-- End Facebook SDK -->
     <div id="container">
-        <div class="g-signin2" data-onsuccess="handleAuthResult"></div>
+   
         <!--<a href="#" onclick="signOut();" id="signout" style="display: none">Sign out</a>-->
         <script>
             function signOut() {
@@ -147,8 +147,9 @@
 
         
       </div>
-	  <div id="level_overlay" onclick="level_overlay_off()">
+	  <div id="level_overlay" >
 		 <div id="level_overlay_text">
+		  <div class="g-signin2" data-onsuccess="handleAuthResult">Sign in to view leaderboard</div>
           <div id="level_number" class="light poiret center">   </div>
                 <div id="level_best_score"> </div>
                 <div id="level_your_score"> </div>

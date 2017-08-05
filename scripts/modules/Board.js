@@ -59,7 +59,6 @@ var Board = (function() {
     }
 
         if (isWin()) {
-
             currentScore = 1000 - (moves_per_level*5) - (( minutes * 60) +  seconds);
             currentTime = minutes + ":" + seconds;
             currentMoves = moves_per_level;
@@ -68,12 +67,17 @@ var Board = (function() {
                 params: { leaderboardId: leaderboardIDs[level.number].id, score: currentScore },
                 method: 'post',
                 callback: function(response) {
-                    gapi.client.request({
+					  if(response && response.hasOwnProperty('error')) {
+						  console.log("error while fetching global scores " + response.error.code);
+					  }else{					  
+						gapi.client.request({
                         path: '/games/v1/leaderboards/' + leaderboardIDs[level.number].id + '/scores/public',
                         params: { maxResults: 3, timeSpan: "ALL_TIME" },
                         callback: function(response) {
-                        if(response.error==null){
-                            
+                        if(response && response.hasOwnProperty('error'))
+							{
+								console.log("error while posting global scores " + response.error.code);
+							}else{                            
                             if (response.items.length == 0) {
                                 bestScore = 0;
                                 secondScore = 0;
@@ -93,27 +97,27 @@ var Board = (function() {
                             }
                             bestScores = 'Best Score: ' + bestScore + '<br/>' + 'Second Score: ' + secondScore + '<br/>' + 'Third Score: ' + thirdScore;
                             level_best_score.html(bestScores);
-                            }else
-							{
-								alert("error while accessing global scores " + response.error.code);
-							}
-							level_your_score.html("Your Score : " + currentScore);
-              	level_watch.html('Total Time : ' + minutes + " : " + seconds );
-                 level_moves.html('Total Moves : ' + moves_per_level );
-                 level_number.html('Level ' + level.number + ' completed!');
-                            level_overlay_on();
-                            board.fadeOut(options.fade, function() {
-                                mediator.publish('board_level_complete');
-                                mediator.publish('board_faded_out');
-                            });
-                            // Hide the intro tutorial if needbe
-                            $('#introtutorial').fadeOut(options.fade);
-                            mediator.publish('board_fade_out');
+                            }
+						
                         }
                     });
                 }
-            });
-        }
+			}
+            }); //gapi get req ends
+				level_your_score.html("Your Score : " + currentScore);
+				level_watch.html('Total Time : ' + minutes + " : " + seconds );
+				level_moves.html('Total Moves : ' + moves_per_level );
+				level_number.html('Level ' + level.number + ' completed!');
+				// Hide the intro tutorial if needbe
+                $('#introtutorial').fadeOut(options.fade);
+                mediator.publish('board_fade_out');
+				 board.fadeOut(options.fade, function() {
+                mediator.publish('board_level_complete');
+                mediator.publish('board_faded_out');
+                            });
+                level_overlay_on();       
+  
+        }//  isWin() ends
     };
 
   var updateMuteButton = function(volume) {
