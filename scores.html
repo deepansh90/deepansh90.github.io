@@ -1,9 +1,23 @@
 <!doctype html>
 <html>
 	<head>
+	    <!--Google play services-->
+        <!--Google play services-->
+    
+    <meta name="google-signin-client_id" content="37577202708-pe4bn8r7sun8fq2ropnjqf79pi5c6g9v.apps.googleusercontent.com" />
+    <meta name="google-signin-cookiepolicy" content="single_host_origin" />
+    <meta name="google-signin-callback" content="signinCallback" />
+    <meta name="google-signin-scope" content="https://www.googleapis.com/auth/games" />
+
+    <script src="https://apis.google.com/js/client.js"></script>
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
 		<script src="scripts/lib/jquery-2.1.1.min.js"></script>
 		<script src="scripts/lib/jquery.touchSwipe.min.js"></script>
 		<script src="scripts/core.js"></script>
+		<script src="scripts/modules/scores.js"></script>
+		<script src="scripts/modules/board.js"></script>
+		<script src="scripts/modules/utilities.js"></script>
+		<script src="scripts/modules/google-api.js"></script>
 		<link href='https://fonts.googleapis.com/css?family=Poiret+One|Open+Sans' rel='stylesheet' type='text/css'>
 		<link href="styles/style.css" rel="stylesheet" type="text/css" />
 		<link href="styles/mobile.css" rel="stylesheet" type="text/css" media="screen and (max-device-width:800px)" />
@@ -19,11 +33,9 @@
 			<div id="box" >
 			<div id ="homeImage" >
 			<div id="gameButtons" >
-			<div class="menuText center"><a href="index.html"> Start Game </a></div>
-			<div id="emptyspace"> </div>
-			<div class="menuText center"><a href="tutorial.html"> Tutorial </a></div>
-						<div id="emptyspace"> </div>
-			<div class="menuText center"><a href="scores.html"> High Scores </a></div>
+			  <div class="g-signin2" data-onsuccess="handleAuthResult">Sign in to view leaderboard</div>
+			           <div id="scoresListDiv"></div>
+             <div id="level_best_score"> </div>
 									</div>
 								</div>
 							</div>

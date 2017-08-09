@@ -93,7 +93,7 @@
     "mode": "vanilla",
     "contents": [ 5,4,6,3,0,4,4,4,6 ],
     "initialSelected": { "x":2, "y":0 }
-  },
+	},
   {
     "type": "level",
     "number": 12,
@@ -105,7 +105,7 @@
   {
     "type": "instruction",
     "title": "The End!",
-    "text": "You've successfully completed all of the levels Equalizer currently has to offer. If you enjoyed the challenge, please make sure to share with Others!",
-    "button": "%fb%"
+    "text": "You've successfully completed all of the levels Equalize currently has to offer. We will be back with new levels soon!",
+    "button": "Close"
   }
 ]
