@@ -6,6 +6,10 @@
   font-family:Arial;
   font-size:3vh;
 }
+.btnsound {
+  background: none;
+  border: none;
+}
 
 html {
   height:100%;
@@ -36,6 +40,12 @@ a {
 
 a:hover {
   color:#fff;
+}
+
+#sound {
+  width:24px;
+  height:20px;
+  padding-top:1px
 }
 
 #level_overlay {

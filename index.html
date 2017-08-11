@@ -35,6 +35,7 @@
     <script src="scripts/modules/Window.js"></script>
 	 <script src="scripts/modules/utilities.js"></script>
 	 <script src="scripts/modules/scores.js"></script>
+
     <link href='https://fonts.googleapis.com/css?family=Poiret+One|Open+Sans' rel='stylesheet' type='text/css'>
     <link href="styles/style.css" rel="stylesheet" type="text/css" />
     <link href="styles/mobile.css" rel="stylesheet" type="text/css" media="screen and (max-device-width:800px)" />
@@ -139,7 +140,10 @@
               <td class="cell center" data-x="2" data-y="2">4</td>
             </tr>
             <tr>
-              <td colspan="2"><a id="level"  class="light poiret left">level #</a></td>
+              <td colspan="1"><a id="level"  class="light poiret left">level #</a></td>
+			  <td colspan="1" style="text-align: center;"> <a onClick="togglePlay()" href="#">
+                  <img src="images/mute2.png" id="sound" />
+                </a> </td>
               <td colspan="2" class="right">
                 <a id="reset" href="#" class="poiret"><img src="images/reset.png" style="width:7vh;" /></a>
               </td>
@@ -149,6 +153,8 @@
 
         
       </div>
+	        <audio id="myAudio" src="gametheme.mp3" preload="auto">
+      </audio>
 	  <div id="level_overlay" >
 		 <div id="level_overlay_text">
 		  <div class="g-signin2" data-onsuccess="handleAuthResult">Sign in to view leaderboard</div>
@@ -179,5 +185,26 @@
     <!-- // commented the   Facebook Like Button drawal
       <div class="fb-like" data-href="http://abefehr.com/parity/" data-layout="box_count" data-action="like" data-show-faces="true" data-share="false"></div>
       <!-- End Facebook Like Button -->
+	  
+	  	 <script>
+        var myAudio = document.getElementById("myAudio");
+        var isPlaying = false;
+        var sound  = document.getElementById("sound");
+        function togglePlay() {
+          if (isPlaying) {
+            myAudio.pause()
+            sound.src = "images/mute2.png";
+          } else {
+            myAudio.play();
+            sound.src = "images/lound2.png";
+          }
+        };
+        myAudio.onplaying = function() {
+          isPlaying = true;
+        };
+        myAudio.onpause = function() {
+          isPlaying = false;
+        };
+      </script>
   </body>
 </html>

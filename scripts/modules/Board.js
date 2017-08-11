@@ -318,7 +318,7 @@ var Board = (function () {
     };
 
     // Set the level text
-    levelLink.html('Level ' + level.number + '/' + numLevels);
+    levelLink.html('Level ' + level.number);
 
     // Fade in once populated
     board.fadeIn(options.fade, function() {
