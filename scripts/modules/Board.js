@@ -1,22 +1,48 @@
 var profile_name;
+var leaderboards = leaderboards || {};
+var utilities = utilities || {};
 
-var Board = (function() {
+leaderboards.createScoresList1 = function (root, scores, listType) {
+    if (!scores) {
+        scores = [];
+    }
 
-  // DOM Elements
-  var board;
-  var cells = [];
-  var levelLink;
-  var level_number;
-  var overlay;
-  var resetLink;
-  var moves_per_level=0;
-  var clear_time;
-  var minutes;
-  var seconds;
-  var currentScore, score, bestScore, secondScore, thirdScore, bestScoreName, secondScoreName, thirdScoreName;
-  var leaderboardIDs;
-  var bestScores = '';
-  var currentTime, currentMoves;
+    var tab = document.createElement('table');
+     var caption = tab.createCaption();
+    if (listType == "local") {
+        tab.className = 'table m-t-110';
+        caption.innerHTML = "<b>Your Score!! </b>";
+    } else {
+        tab.className = 'table m-t-20'; 
+         caption.innerHTML = "<b>Global Best!!</b>";
+    }
+    var row, cell;
+
+    for (i = 0; i < scores.length; i++) {
+        var row = document.createElement('tr');
+        for (j = 0; j < scores[i].length; j++) {
+            cell = utilities.createCell('td', scores[i][j]);
+            cell.className = 'tdclass';
+            row.appendChild(cell);
+        }
+        tab.appendChild(row);
+    }
+    root.appendChild(tab);
+};
+
+
+var Board = (function () {
+
+    // DOM Elements
+    var board;
+    var cells = [];
+    var levelLink, level_number, overlay, resetLink;
+    var moves_per_level = 0;
+    var clear_time, minutes, seconds;
+    var currentScore, score, bestScore, secondScore, thirdScore, bestScoreName, secondScoreName, thirdScoreName;
+    var leaderboardIDs;
+    var bestScores = '';
+    var currentTime, currentMoves;
 
    
 
@@ -69,7 +95,11 @@ var Board = (function() {
             currentMoves = moves_per_level;
             gapi.client.request({
                 path: '/games/v1/leaderboards/' + leaderboardIDs[level.number].id + '/scores',
-                params: { leaderboardId: leaderboardIDs[level.number].id, score: currentScore,displayName:  profile_name },
+                params: {
+                    leaderboardId: leaderboardIDs[level.number].id,
+                    score: currentScore,
+                    displayName: profile_name
+                },
                 method: 'post',
                 callback: function(response) {
 					  if(response && response.hasOwnProperty('error')) {
@@ -79,15 +109,20 @@ var Board = (function() {
                 }
 			}
             }); //gapi get req ends
-				level_your_score.html("Your Score : " + currentScore);
-				level_watch.html('Total Time : ' + minutes + " : " + seconds );
-				level_moves.html('Total Moves : ' + moves_per_level );
-				level_number.html('Level ' + level.number + ' completed!');
-				level_best_score.html("");
-				// Hide the intro tutorial if needbe
-               
-                mediator.publish('board_fade_out');
-				 board.fadeOut(options.fade, function() {
+            var root = document.getElementById('level_your_score');
+            root.innerHTML = "";
+            var itemArray = [
+                              ['Score', currentScore],
+							  ['Moves', moves_per_level],
+                              ['Time', minutes + ":" + seconds]                             
+                            ];
+            leaderboards.createScoresList1(root, itemArray, "local");
+            level_number.html('Level ' + level.number);
+			level_best_score.html("");
+            // Hide the intro tutorial if needbe
+
+            mediator.publish('board_fade_out');
+            board.fadeOut(options.fade, function () {
                 mediator.publish('board_level_complete');
                 mediator.publish('board_faded_out');
                             });
@@ -98,51 +133,37 @@ var Board = (function() {
         }//  isWin() ends
     };
 
-  var updateMuteButton = function(volume) {
-    toggleMuteLink.html(volume ? 'mute' : 'unmute');
-  };
-  
-  function getHighScoresAPI(level_num){
-	  	gapi.client.request({
-                        path: '/games/v1/leaderboards/' + leaderboardIDs[level_num].id + '/scores/public',
-                        params: { maxResults: 3, timeSpan: "ALL_TIME"},
-                        callback: function(response) {
-                        if(response && response.hasOwnProperty('error'))
-							{
-								console.log("error while posting global scores " + response.error.code);
-							}else{
-                                bestScore = 0;
-                                secondScore = 0;
-                                thirdScore = 0;
-								bestScoreName= "";
-								secondScoreName="";
-								thirdScoreName="";
-								
-                            if (response.numScores == 1) {
-                                bestScore = response.items[0].formattedScore;
-								bestScoreName= response.items[0].player.displayName;
-                                secondScore = 0;
-                                thirdScore = 0;
-                            } else if (response.numScores == 2) {
-                                bestScore = response.items[0].formattedScore;
-								bestScoreName= response.items[0].player.displayName;
-                                secondScore = response.items[1].formattedScore;
-								secondScoreName = response.items[1].player.displayName;
-                                thirdScore = 0;
-                            } else if (response.numScores > 2) {
-                                bestScore = response.items[0].formattedScore;
-								bestScoreName= response.items[0].player.displayName;
-                                secondScore = response.items[1].formattedScore;
-								secondScoreName = response.items[1].player.displayName;
-                                thirdScore = response.items[2].formattedScore;
-								thirdScoreName = response.items[2].player.displayName;
-                            }
-                            bestScores = '1. ' + bestScoreName +  ' ' + bestScore + '<br/>' + '2. ' +  secondScoreName +  ' ' + secondScore + '<br/>' + '3. ' + thirdScoreName + ' ' + thirdScore;
-                            level_best_score.html(bestScores);
-                            }
-                        }
-                    });
-  }
+    var updateMuteButton = function (volume) {
+        toggleMuteLink.html(volume ? 'mute' : 'unmute');
+    };
+
+    function getHighScoresAPI(level_num) {
+        gapi.client.request({
+            path: '/games/v1/leaderboards/' + leaderboardIDs[level_num].id + '/scores/public',
+            params: {
+                maxResults: 3,
+                timeSpan: "ALL_TIME"
+            },
+            callback: function (response) {
+                if (response && response.hasOwnProperty('error')) {
+                    console.log("error while posting global scores " + response.error.code);
+                } else {
+                    var topScoreArr = [];
+                    for (var index in response.items) {
+                        var eachScoreArr = [];
+                        item = response.items[index];
+                        bestScoreName = item.player.displayName;
+                        bestScore = item.formattedScore;
+                        eachScoreArr.push(bestScoreName, bestScore);
+                        topScoreArr.push(eachScoreArr);
+                    }
+                    var root = document.getElementById('level_best_score');
+                    root.innerHTML = "";
+                    leaderboards.createScoresList1(root, topScoreArr, "global");
+                }
+            }
+        });
+    }
 
   // Looks for a winning condition on the board, returns true or false
   function isWin() {
