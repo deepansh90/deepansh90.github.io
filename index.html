@@ -104,6 +104,7 @@
                 });
             }
         </script>
+
       <p id="title" class="light poiret center">Equalize</p>
       <div id="box">
         <div id="overlay">
@@ -121,8 +122,9 @@
         <table id="board">
           <tbody id="board_body">
             <tr>
-              <td colspan="2">  <a id="watch" class="light poiret center"> </a></td>
-              <td colspan="2">  <a id="moves" class="light poiret center"> </a></td>
+			 <td colspan="1"><a id="level"  class="light poiret center">level #</a></td>
+              <td colspan="1" class="center">  <a id="watch" class="light poiret center"> </a></td>
+              <td colspan="1">  <a id="moves" class="light poiret center"> </a></td>
             </tr>
             <tr>
               <td class="cell center" data-x="0" data-y="0">4</td>
@@ -140,12 +142,15 @@
               <td class="cell center" data-x="2" data-y="2">4</td>
             </tr>
             <tr>
-              <td colspan="1"><a id="level"  class="light poiret left">level #</a></td>
+             
+			<td colspan="1" class="left">
+                <a id="back_button" href="home.html" class="poiret"><img src="images/back.png" title="back to home" style="width:7vh;" /></a>
+              </td>
 			  <td colspan="1" style="text-align: center;"> <a onClick="togglePlay()" href="#">
-                  <img src="images/mute2.png" id="sound" />
+                  <img src="images/mute2.png" title="Toggle Music ON/OFF" id="sound" />
                 </a> </td>
-              <td colspan="2" class="right">
-                <a id="reset" href="#" class="poiret"><img src="images/reset.png" style="width:7vh;" /></a>
+              <td colspan="1" class="right">
+                <a id="reset" href="#" class="poiret"><img src="images/reset.png" title="Restart Game" style="width:7vh;" /></a>
               </td>
             </tr>
           </tbody>
