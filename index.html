@@ -1,6 +1,7 @@
 <!doctype html>
 <html>
-  <head>
+
+<head>
     <title>Equalize</title>
     <!--Google play services-->
     <script src="scripts/modules/google-api.js"></script>
@@ -18,7 +19,7 @@
     <meta property="og:type" content="website" />
     <meta property="og:title" content="Equalize" />
     <meta property="og:description" content="An addicting numbers puzzle game.">
-    <meta name="description" content="An addicting numbers puzzle game.">	
+    <meta name="description" content="An addicting numbers puzzle game.">
     <!-- commented minify js drawal End Facebook Metadata
       //  <script src="scripts/production.js"></script>  -->
     <script src="scripts/lib/jquery-2.1.1.min.js"></script>
@@ -33,8 +34,8 @@
     <script src="scripts/modules/Story.js"></script>
     <script src="scripts/modules/Swipe.js"></script>
     <script src="scripts/modules/Window.js"></script>
-	 <script src="scripts/modules/utilities.js"></script>
-	 <script src="scripts/modules/scores.js"></script>
+    <script src="scripts/modules/utilities.js"></script>
+    <script src="scripts/modules/scores.js"></script>
 
     <link href='https://fonts.googleapis.com/css?family=Poiret+One|Open+Sans' rel='stylesheet' type='text/css'>
     <link href="styles/style.css" rel="stylesheet" type="text/css" />
@@ -55,8 +56,9 @@
       
       </script>
       <!-- End Google Analytics -->
-  </head>
-  <body>
+</head>
+
+<body>
     <!-- Begin Clay -->
     <script>
         (function(C, l, a, y, _, i, o) {
@@ -73,6 +75,7 @@
         Clay('init', {
             gameId: '8304'
         })
+
     </script>
     <!-- commented drawal Begin Facebook SDK 
       <script>
@@ -94,7 +97,7 @@
       </script>
       <!-- End Facebook SDK -->
     <div id="container">
-   
+
         <!--<a href="#" onclick="signOut();" id="signout" style="display: none">Sign out</a>-->
         <script>
             function signOut() {
@@ -103,113 +106,120 @@
                     console.log('User signed out.');
                 });
             }
+
         </script>
 
-      <p id="title" class="light poiret center">Equalize</p>
-      <div id="box">
-        <div id="overlay">
-          <h1></h1>
-          <div id="content"></div>
-          <!-- this button is in a holder so that I can center it and control its height properly -->
-          <div id="holder">
-            <button> </button>
-          </div>
-        </div>
-        <div id="swipeArea"></div>
-        <div class="dSelected" id="selector"></div>
-        <!-- The arrow that guides the user for the very first level -->
-        <div id="introtutorial"></div>
-        <table id="board">
-          <tbody id="board_body">
-            <tr>
-			 <td colspan="1"><a id="level"  class="light poiret center">level #</a></td>
-              <td colspan="1" class="center">  <a id="watch" class="light poiret center"> </a></td>
-              <td colspan="1">  <a id="moves" class="light poiret center"> </a></td>
-            </tr>
-            <tr>
-              <td class="cell center" data-x="0" data-y="0">4</td>
-              <td class="cell center" data-x="1" data-y="0">4</td>
-              <td class="cell center" data-x="2" data-y="0">4</td>
-            </tr>
-            <tr>
-              <td class="cell center" data-x="0" data-y="1">4</td>
-              <td class="cell center" data-x="1" data-y="1">4</td>
-              <td class="cell center" data-x="2" data-y="1">4</td>
-            </tr>
-            <tr>
-              <td class="cell center" data-x="0" data-y="2">4</td>
-              <td class="cell center selected" data-x="1" data-y="2">4</td>
-              <td class="cell center" data-x="2" data-y="2">4</td>
-            </tr>
-            <tr>
-             
-			<td colspan="1" class="left">
-                <a id="back_button" href="home.html" class="poiret"><img src="images/back.png" title="back to home" style="width:7vh;" /></a>
-              </td>
-			  <td colspan="1" style="text-align: center;"> <a onClick="togglePlay()" href="#">
-                  <img src="images/mute2.png" title="Toggle Music ON/OFF" id="sound" />
-                </a> </td>
-              <td colspan="1" class="right">
-                <a id="reset" href="#" class="poiret"><img src="images/reset.png" title="Restart Game" style="width:7vh;" /></a>
-              </td>
-            </tr>
-          </tbody>
-        </table>
+        <p id="title" class="light poiret center">Equalize</p>
+        <div id="box">
+            <div id="overlay">
+                <h1></h1>
+                <div id="content"></div>
+                <!-- this button is in a holder so that I can center it and control its height properly -->
+                <div id="holder">
+                    <button> </button>
+                </div>
+            </div>
+            <div id="swipeArea"></div>
+            <div class="dSelected" id="selector"></div>
+            <!-- The arrow that guides the user for the very first level -->
+            <div id="introtutorial"></div>
+            <table id="board">
+                <tbody id="board_body">
+                    <tr>
+                        <td colspan="1"><a id="level" class="light poiret center">level #</a></td>
+                        <td colspan="1" class="center">
+                            <a id="watch" class="light poiret center"> </a>
+                        </td>
+                        <td colspan="1">
+                            <a id="moves" class="light poiret center"> </a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="cell center" data-x="0" data-y="0">4</td>
+                        <td class="cell center" data-x="1" data-y="0">4</td>
+                        <td class="cell center" data-x="2" data-y="0">4</td>
+                    </tr>
+                    <tr>
+                        <td class="cell center" data-x="0" data-y="1">4</td>
+                        <td class="cell center" data-x="1" data-y="1">4</td>
+                        <td class="cell center" data-x="2" data-y="1">4</td>
+                    </tr>
+                    <tr>
+                        <td class="cell center" data-x="0" data-y="2">4</td>
+                        <td class="cell center selected" data-x="1" data-y="2">4</td>
+                        <td class="cell center" data-x="2" data-y="2">4</td>
+                    </tr>
+                    <tr>
 
-        
-      </div>
-	        <audio id="myAudio" src="gametheme.mp3" preload="auto">
+                        <td colspan="1" class="left">
+                            <a id="back_button" href="home.html" class="poiret"><img src="images/back.png" title="back to home" style="width:7vh;" /></a>
+                        </td>
+                        <td colspan="1" style="text-align: center;">
+                            <a onClick="togglePlay()" href="#">
+                                <img src="images/mute2.png" title="Toggle Music ON/OFF" id="sound" />
+                            </a>
+                        </td>
+                        <td colspan="1" class="right">
+                            <a id="reset" href="#" class="poiret"><img src="images/reset.png" title="Restart Game" style="width:7vh;" /></a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+
+        </div>
+        <audio id="myAudio" src="gametheme.mp3" preload="auto">
       </audio>
-	  <div id="level_overlay" >
-		 <div id="level_overlay_text">
-		  <div class="g-signin2" data-onsuccess="handleAuthResult">Sign in to view leaderboard</div>
-          <div id="level_number" class="light poiret center">   </div>
-             <div id="level_best_score"> </div>
+        <div id="level_overlay">
+            <div id="level_overlay_text">
+                <div class="g-signin2" data-onsuccess="handleAuthResult">Sign in to view leaderboard</div>
+                <div id="level_number" class="light poiret center"> </div>
+                <div id="level_best_score"> </div>
                 <div id="level_your_score"> </div>
-          <div id="level_moves" > </div>
-          <div id="level_watch" > </div>
-		  <div id="emptyspace"> </div> 
-		  <div id="close_overlay" class="btnclose" 	> Next </div>
-          
+                <div id="level_moves"> </div>
+                <div id="level_watch"> </div>
+                <div id="emptyspace"> </div>
+                <div id="close_overlay" class="btnclose"> Next </div>
+
+            </div>
         </div>
-		</div>
-      <!-- // commented the ads drawal
+         <!--  // commented the ads drawal  -->
         <div style="text-align:center;margin:1vh;">
-          <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-        
-          <ins class="adsbygoogle"
-               style="display:inline-block;width:320px;height:100px"
-               data-ad-client="ca-pub-4885767461778395"
-               data-ad-slot="9072452678"></ins>
-          <script>
-          (adsbygoogle = window.adsbygoogle || []).push({});
-          </script>
+            <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+
+            <ins class="adsbygoogle" style="display:inline-block;width:320px;height:100px" data-ad-client="ca-app-pub-6030569595197388" data-ad-slot="4895663063"></ins>
+            <script>
+                (adsbygoogle = window.adsbygoogle || []).push({});
+
+            </script>
         </div>
-        <!--<p id="about" class="light poiret center">A numbers puzzle game by <a href="http://abefehr.com/" target="_blank">Abe Fehr</a></p>-->
     </div>
     <!-- // commented the   Facebook Like Button drawal
       <div class="fb-like" data-href="http://abefehr.com/parity/" data-layout="box_count" data-action="like" data-show-faces="true" data-share="false"></div>
       <!-- End Facebook Like Button -->
-	  
-	  	 <script>
+
+    <script>
         var myAudio = document.getElementById("myAudio");
         var isPlaying = false;
-        var sound  = document.getElementById("sound");
+        var sound = document.getElementById("sound");
+
         function togglePlay() {
-          if (isPlaying) {
-            myAudio.pause()
-            sound.src = "images/mute2.png";
-          } else {
-            myAudio.play();
-            sound.src = "images/lound2.png";
-          }
+            if (isPlaying) {
+                myAudio.pause()
+                sound.src = "images/mute2.png";
+            } else {
+                myAudio.play();
+                sound.src = "images/lound2.png";
+            }
         };
         myAudio.onplaying = function() {
-          isPlaying = true;
+            isPlaying = true;
         };
         myAudio.onpause = function() {
-          isPlaying = false;
+            isPlaying = false;
         };
-      </script>
-  </body>
+
+    </script>
+</body>
+
 </html>
