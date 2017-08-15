@@ -1,0 +1,111 @@
+[
+  {
+    "type": "instruction",
+    "title": "How to play",
+    "text": "Equalize is a numbers puzzle game.\nThe aim of the game is to get each number on a 3x3 board of numbers to be exactly the same.",
+    "button": "okay..."
+  },
+  {
+    "type": "instruction",
+    "title": "How to play",
+    "text": "One of the numbers is always selected. This number can be moved by using the arrow keys",
+    "button": "sounds easy"
+  },
+  {
+    "type": "instruction",
+    "title": "How to play",
+    "text": "Each time you move the selector, the number you select will increase in number by one.",
+    "button": "I got this!"
+  },
+  {
+    "type": "level",
+    "number": 1,
+    "mode": "vanilla",
+    "contents": [ 1,0,0,1,1,0,1,1,0 ],
+    "initialSelected": { "x":0, "y":0 }
+  },
+  {
+    "type": "level",
+    "number": 2,
+    "mode": "vanilla",
+    "contents": [ 1,0,1,0,0,0,0,0,0 ],
+    "initialSelected": { "x":0, "y":0 }
+  },
+  {
+    "type": "level",
+    "number": 3,
+    "mode": "vanilla",
+    "contents": [ 1,2,2,2,3,2,3,2,2 ],
+    "initialSelected": { "x":0, "y":2 }
+  },
+  {
+    "type": "level",
+    "number": 4,
+    "mode": "vanilla",
+    "contents": [ 3,4,3,1,3,2,1,1,2 ],
+    "initialSelected": { "x":0, "y":0 }
+  },
+  {
+    "type": "level",
+    "number": 5,
+    "mode": "vanilla",
+    "contents": [ 1,-1,0,0,-1,0,0,1,0 ],
+    "initialSelected": { "x":1, "y":2 }
+  },
+  {
+    "type": "level",
+    "number": 6,
+    "mode": "vanilla",
+    "contents": [ 2,0,1,2,-3,-2,2,1,2 ],
+    "initialSelected": { "x":1, "y":2 }
+  },
+  {
+    "type": "level",
+    "number": 7,
+    "mode": "vanilla",
+    "contents": [ 4,3,3,3,1,2,5,3,5 ],
+    "initialSelected": { "x":0, "y":2 }
+  },
+  {
+    "type": "level",
+    "number": 8,
+    "mode": "vanilla",
+    "contents": [ -7,-9,-7,-8,-12,-9,-6,-7,-7 ],
+    "initialSelected": { "x":1, "y":2 }
+  },
+  {
+    "type": "level",
+    "number": 9,
+    "mode": "vanilla",
+    "contents": [ 6,4,5,5,3,4,5,4,5 ],
+    "initialSelected": { "x":2, "y":1 }
+  },
+  {
+    "type": "level",
+    "number": 10,
+    "mode": "vanilla",
+    "contents": [ 9,7,8,8,5,6,9,8,7 ],
+    "initialSelected": { "x":0, "y":1 }
+  },
+  {
+    "type": "level",
+    "number": 11,
+    "mode": "vanilla",
+    "contents": [ 5,4,6,3,0,4,4,4,6 ],
+    "initialSelected": { "x":2, "y":0 }
+	},
+  {
+    "type": "level",
+    "number": 12,
+    "mode": "vanilla",
+    "contents": [-1,-4,1,1,0,3,3,3,3],
+    "initialSelected": { "x": 2, "y": 1 },
+    "solution": [ "l","u","r","l","l","d","u","r","l","r","r","l","d","u","l","d","r","u" ]
+  },
+  {
+    "type": "instruction",
+    "title": "The End!",
+    "text": "You've successfully completed all of the levels Equalize currently has to offer. We will be back with new levels soon!",
+    "button": "Close"
+  }
+]
