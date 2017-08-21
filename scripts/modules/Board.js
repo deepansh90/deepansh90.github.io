@@ -2,7 +2,37 @@ var profile_name;
 var leaderboards = leaderboards || {};
 var utilities = utilities || {};
 
-leaderboards.createScoresList1 = function (root, scores, listType) {
+var numeroLevel;
+
+function getHighScoresAPI(level_num) {
+    gapi.client.request({
+        path: '/games/v1/leaderboards/' + leaderboardIDs[level_num].id + '/scores/public',
+        params: {
+            maxResults: 3,
+            timeSpan: "ALL_TIME"
+        },
+        callback: function(response) {
+            if (response && response.hasOwnProperty('error')) {
+                console.log("error while posting global scores " + response.error.code);
+            } else {
+                var topScoreArr = [];
+                for (var index in response.items) {
+                    var eachScoreArr = [];
+                    item = response.items[index];
+                    bestScoreName = item.player.displayName;
+                    bestScore = item.formattedScore;
+                    eachScoreArr.push(bestScoreName, bestScore);
+                    topScoreArr.push(eachScoreArr);
+                }
+                var root = document.getElementById('level_best_score');
+                root.innerHTML = "";
+                leaderboards.createScoresList1(root, topScoreArr, "global");
+            }
+        }
+    });
+}
+
+leaderboards.createScoresList1 = function(root, scores, listType) {
     if (!scores) {
         scores = [];
     }
@@ -90,6 +120,7 @@ var Board = (function () {
         if (isWin()) {
 			$('#introtutorial').fadeOut(options.fade);
 			var level_num = level.number;
+      numeroLevel = level.number;
             currentScore = 1000 - (moves_per_level*5) - (( minutes * 60) +  seconds);
             currentTime = minutes + ":" + seconds;
             currentMoves = moves_per_level;
@@ -137,46 +168,18 @@ var Board = (function () {
         toggleMuteLink.html(volume ? 'mute' : 'unmute');
     };
 
-    function getHighScoresAPI(level_num) {
-        gapi.client.request({
-            path: '/games/v1/leaderboards/' + leaderboardIDs[level_num].id + '/scores/public',
-            params: {
-                maxResults: 3,
-                timeSpan: "ALL_TIME"
-            },
-            callback: function (response) {
-                if (response && response.hasOwnProperty('error')) {
-                    console.log("error while posting global scores " + response.error.code);
-                } else {
-                    var topScoreArr = [];
-                    for (var index in response.items) {
-                        var eachScoreArr = [];
-                        item = response.items[index];
-                        bestScoreName = item.player.displayName;
-                        bestScore = item.formattedScore;
-                        eachScoreArr.push(bestScoreName, bestScore);
-                        topScoreArr.push(eachScoreArr);
-                    }
-                    var root = document.getElementById('level_best_score');
-                    root.innerHTML = "";
-                    leaderboards.createScoresList1(root, topScoreArr, "global");
-                }
+    // Looks for a winning condition on the board, returns true or false
+    function isWin() {
+        var value = cell(0, 0);
+        for (var i = 0; i < 3; ++i) {
+            for (var j = 0; j < 3; ++j) {
+                if (cell(i, j) != value)
+                    return false;
             }
-        });
+        }
+        return true;
     }
 
-  // Looks for a winning condition on the board, returns true or false
-  function isWin() {
-    var value = cell(0,0);
-    for(var i = 0; i < 3; ++i) {
-      for(var j = 0; j < 3; ++j) {
-        if(cell(i,j) != value)
-          return false;
-      }
-    }
-    return true;
-  }
-  
 
   	  function level_overlay_on() {
         document.getElementById("box").style.display = "none";

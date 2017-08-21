@@ -21,7 +21,7 @@ handleAuthResult = function(auth) {
 
 function hideMyGamesSignInButton() {
     $(".g-signin2").hide();
-    // $("#signout").show();
+    getHighScoresAPI(numeroLevel);
 }
 
 function showMyGamesSignInButton() {
