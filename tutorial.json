@@ -1,0 +1,21 @@
+[{
+        "type": "level",
+        "number": 1,
+        "mode": "vanilla",
+        "contents": [1, 0, 0, 1, 1, 0, 1, 1, 0],
+        "initialSelected": { "x": 0, "y": 0 }
+    },
+    {
+        "type": "level",
+        "number": 2,
+        "mode": "vanilla",
+        "contents": [1, 0, 1, 0, 0, 0, 0, 0, 0],
+        "initialSelected": { "x": 0, "y": 0 }
+    },
+    {
+        "type": "instruction",
+        "title": "The End!",
+        "text": "You've successfully completed the tutorial, you can start the game now",
+        "button": "Close"
+    }
+]

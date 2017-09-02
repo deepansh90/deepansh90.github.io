@@ -122,6 +122,8 @@ var Board = (function () {
 			var level_num = level.number;
       numeroLevel = level.number;
             currentScore = 1000 - (moves_per_level*5) - (( minutes * 60) +  seconds);
+			if(currentScore<0)
+				currentScore=0;
             currentTime = minutes + ":" + seconds;
             currentMoves = moves_per_level;
             gapi.client.request({

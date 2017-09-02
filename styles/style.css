@@ -42,6 +42,10 @@ a:hover {
   color:#fff;
 }
 
+div#scoresListDiv {
+    width: 70%;
+}
+
 #sound {
   width:24px;
   height:20px;
@@ -256,10 +260,9 @@ a:hover {
 }
 
 #gameButtons {
-	position: relative;
+    position: relative;
     padding-top: 90%;
-	left: 29%;
-
+    left: 25%;
 }
 
 #overlay button:active, .active {

@@ -1,9 +1,10 @@
 <!doctype html>
 <html>
-	<head>
-	    <!--Google play services-->
-        <!--Google play services-->
-    
+
+<head>
+    <!--Google play services-->
+    <!--Google play services-->
+    <script src="scripts/modules/google-api.js"></script>
     <meta name="google-signin-client_id" content="37577202708-pe4bn8r7sun8fq2ropnjqf79pi5c6g9v.apps.googleusercontent.com" />
     <meta name="google-signin-cookiepolicy" content="single_host_origin" />
     <meta name="google-signin-callback" content="signinCallback" />
@@ -23,23 +24,25 @@
 		<link href="styles/mobile.css" rel="stylesheet" type="text/css" media="screen and (max-device-width:800px)" />
 		<!--<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
 			<link rel="icon" href="/favicon.ico" type="image/x-icon"> -->
-		<meta name="viewport" content="initial-scale=1.0" />
-		<meta name="apple-mobile-web-app-capable" content="yes" />
-	</head>
-	<body>
-		<div id="container">
-			<p id="title" class="light poiret center"></p>
-			<div id="emptyspace"> </div>
-			<div id="box" >
-			<div id ="homeImage" >
-			<div id="gameButtons" >
-			  <div class="g-signin2" data-onsuccess="handleAuthResult">Sign in to view leaderboard</div>
-			           <div id="scoresListDiv"></div>
-             <div id="level_best_score"> </div>
-									</div>
-								</div>
-							</div>
-						</div>
-				
-	</body>
+    <meta name="viewport" content="initial-scale=1.0" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+</head>
+
+<body>
+    <div id="container">
+        <p id="title" class="light poiret center"></p>
+        <div id="emptyspace"> </div>
+        <div id="box">
+            <div id="homeImage">
+                <div id="gameButtons">
+                    <div class="g-signin2" data-onsuccess="handleAuthResult2">Sign in to view leaderboard</div>
+                    <div id="scoresListDiv" style="overflow:scroll; max-height: 200px"></div>
+                    <div id="level_best_score"> </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+
 </html>

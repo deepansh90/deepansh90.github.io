@@ -31,31 +31,31 @@ leaderboards.createScoresList = function(root, scores) {
   row.appendChild(cell);
   tab.appendChild(row);
 
-  row = document.createElement('tr');
-  row.style.backgroundColor = '#e81d62';
-  row.style.color = '#FFF';
-  cell = utilities.createCell('th', 'leaderboard_id');
-  row.appendChild(cell);
+    row = document.createElement('tr');
+    row.style.backgroundColor = '#e81d62';
+    row.style.color = '#FFF';
+    cell = utilities.createCell('th', 'level');
+    row.appendChild(cell);
 
-  cell = utilities.createCell('th', 'scoreString');
-  row.appendChild(cell);
+    cell = utilities.createCell('th', 'score');
+    row.appendChild(cell);
 
-  cell = utilities.createCell('th', 'public rank');
-  row.appendChild(cell);
+    cell = utilities.createCell('th', 'public');
+    row.appendChild(cell);
 
-  cell = utilities.createCell('th', 'social rank');
-  row.appendChild(cell);
+    cell = utilities.createCell('th', 'social');
+    row.appendChild(cell);
 
   tab.appendChild(row);
 
-  // Now actually parse the data.
-  for (var index in scores) {
-    item = scores[index];
-    row = document.createElement('tr');
-    row.style.backgroundColor = index & 1 ? '#CCC' : '#FFF';
+    // Now actually parse the data.
+    for (var index in scores) {
+        item = scores[index];
+        row = document.createElement('tr');
+        row.style.backgroundColor = index & 1 ? '#666' : '#444';
 
-    cell = utilities.createCell('td', item.leaderboard_id);
-    row.appendChild(cell);
+        cell = utilities.createCell('td', (parseInt(index) + 1));
+        row.appendChild(cell);
 
     cell = utilities.createCell('td', item.scoreString);
     row.appendChild(cell);
@@ -84,22 +84,34 @@ leaderboards.createScoresList = function(root, scores) {
 
 
 // Start the game when the DOM is ready
-function loadLeaderboardsAndAchievements(){
-	document.querySelector('#scoresListDiv').innerHTML = '';
-	document.querySelector('#scoresListDiv').style.display = 'block';
-   // Create the request
-  	gapi.client.request({
-                        path: '/games/v1/players/me/leaderboards/' + leaderboardIDs[2].id + '/scores/public',
-                        params: { maxResults: 3, timeSpan: "ALL_TIME",includeRankType: 'ALL'},
-                        callback: function(response) {
-						console.log('Get scores', response);
-                        if(response && response.hasOwnProperty('error'))
-							{
-								console.log("error while posting global scores " + response.error.code);
-							}else{    
-							 var root = document.getElementById('scoresListDiv');
-							leaderboards.createScoresList(root, response.items);
-							}
-						}
-					});
+function loadLeaderboardsAndAchievements() {
+    var maxLevelsScores = 5;
+    var allScores = [];
+    var scoresNb = 0;
+    document.querySelector('#scoresListDiv').innerHTML = '';
+    document.querySelector('#scoresListDiv').style.display = 'block';
+    for (var lb in leaderboardIDs) {
+        // Create the request
+        if (lb > 0 && lb <= maxLevelsScores) {
+            gapi.client.request({
+                path: '/games/v1/players/me/leaderboards/' + leaderboardIDs[lb].id + '/scores/public',
+                params: { maxResults: 1, timeSpan: "ALL_TIME", includeRankType: 'ALL' },
+                callback: function(response) {
+                    scoresNb++;
+                    console.log('Get scores', response);
+                    if (response && response.hasOwnProperty('error')) {
+                        console.log("error while posting global scores " + response.error.code);
+                    } else {
+                        allScores.push(response.items[0]);
+                        if (scoresNb == maxLevelsScores) {
+                            var root = document.getElementById('scoresListDiv');
+                            leaderboards.createScoresList(root, allScores);
+                        }
+                    }
+                }
+            });
+        }
+    }
+    // var root = document.getElementById('scoresListDiv');
+    // leaderboards.createScoresList(root, allScores);
 }

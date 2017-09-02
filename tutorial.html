@@ -1,21 +1,224 @@
 <!doctype html>
 <html>
-	<head>
-		<script src="scripts/lib/jquery-2.1.1.min.js"></script>
-		<script src="scripts/lib/jquery.touchSwipe.min.js"></script>
-		<script src="scripts/core.js"></script>
-		<link href='https://fonts.googleapis.com/css?family=Poiret+One|Open+Sans' rel='stylesheet' type='text/css'>
-		<link href="styles/style.css" rel="stylesheet" type="text/css" />
-		<link href="styles/mobile.css" rel="stylesheet" type="text/css" media="screen and (max-device-width:800px)" />
-		<!--<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
-			<link rel="icon" href="/favicon.ico" type="image/x-icon"> -->
-		<meta name="viewport" content="initial-scale=1.0" />
-		<meta name="apple-mobile-web-app-capable" content="yes" />
-	</head>
-	<body>
-		<div id="container">
-<div id="tutorial"><img src="images/tut.gif" /></div>
-						</div>
-				
-	</body>
+
+<head>
+    <title>Equalize</title>
+    <!--Google play services-->
+    <script src="scripts/modules/google-api.js"></script>
+    <meta name="google-signin-client_id" content="37577202708-pe4bn8r7sun8fq2ropnjqf79pi5c6g9v.apps.googleusercontent.com" />
+    <meta name="google-signin-cookiepolicy" content="single_host_origin" />
+    <meta name="google-signin-callback" content="signinCallback" />
+    <meta name="google-signin-scope" content="https://www.googleapis.com/auth/games" />
+
+    <script src="https://apis.google.com/js/client.js"></script>
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+
+    <!-- Begin Facebook Metadata -->
+    <meta property="fb:app_id" content="916448168386651" />
+    <meta property="og:url" content="http://abefehr.com/parity/" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Equalize" />
+    <meta property="og:description" content="An addicting numbers puzzle game.">
+    <meta name="description" content="An addicting numbers puzzle game.">
+    <!-- commented minify js drawal End Facebook Metadata
+      //  <script src="scripts/production.js"></script>  -->
+    <script src="scripts/lib/jquery-2.1.1.min.js"></script>
+    <script src="scripts/lib/jquery.touchSwipe.min.js"></script>
+    <script src="scripts/core.js"></script>
+    <script src="scripts/modules/tutorial.js"></script>
+    <!--<script src="scripts/modules/Board.js"></script>-->
+    <script src="scripts/modules/Keyboard.js"></script>
+    <script src="scripts/modules/Manager.js"></script>
+    <script src="scripts/modules/Overlay.js"></script>
+    <script src="scripts/modules/Selector.js"></script>
+    <script src="scripts/modules/stateTutorial.js"></script>
+    <script src="scripts/modules/tutorial_story.js"></script>
+    <script src="scripts/modules/Swipe.js"></script>
+    <script src="scripts/modules/Window.js"></script>
+    <script src="scripts/modules/utilities.js"></script>
+    <script src="scripts/modules/scores.js"></script>
+
+
+    <link href='https://fonts.googleapis.com/css?family=Poiret+One|Open+Sans' rel='stylesheet' type='text/css'>
+    <link href="styles/style.css" rel="stylesheet" type="text/css" />
+    <link href="styles/mobile.css" rel="stylesheet" type="text/css" media="screen and (max-device-width:800px)" />
+    <!--<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+      <link rel="icon" href="/favicon.ico" type="image/x-icon"> -->
+    <meta name="viewport" content="initial-scale=1.0" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <!-- commented drawal Begin Google Analytics  
+      <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+      
+      ga('create', 'UA-30977471-1', 'auto');
+      ga('send', 'pageview');
+      
+      </script>
+      <!-- End Google Analytics -->
+</head>
+
+<body>
+    <!-- Begin Clay -->
+    <script>
+        (function(C, l, a, y, _, i, o) {
+            C[_] = C[_] || function() {
+                (C[_].q = C[_].q || []).push(arguments)
+            }, C[_].l = 1 * new Date();
+            i = l.createElement(a),
+                o = l.getElementsByTagName(a)[0];
+            i.async = 1;
+            i.src = y;
+            o.parentNode.insertBefore(i, o)
+        })(window, document, 'script', 'https://cdn.wtf/sdk/v1/clay_sdk.js', 'Clay');
+
+        Clay('init', {
+            gameId: '8304'
+        })
+    </script>
+    <!-- commented drawal Begin Facebook SDK 
+      <script>
+      window.fbAsyncInit = function() {
+        FB.init({
+          appId      : '916448168386651',
+          xfbml      : true,
+          version    : 'v2.2'
+        });
+      };
+      
+      (function(d, s, id){
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) {return;}
+        js = d.createElement(s); js.id = id;
+        js.src = "https://connect.facebook.net/en_US/sdk.js";
+        fjs.parentNode.insertBefore(js, fjs);
+      }(document, 'script', 'facebook-jssdk'));
+      </script>
+      <!-- End Facebook SDK -->
+    <div id="container">
+
+        <!--<a href="#" onclick="signOut();" id="signout" style="display: none">Sign out</a>-->
+        <script>
+            function signOut() {
+                var auth2 = gapi.auth2.getAuthInstance();
+                auth2.signOut().then(function() {
+                    console.log('User signed out.');
+                });
+            }
+        </script>
+
+        <p id="title" class="light poiret center">Equalize</p>
+        <div id="box">
+            <div id="overlay">
+                <h1></h1>
+                <div id="content"></div>
+                <!-- this button is in a holder so that I can center it and control its height properly -->
+                <div id="holder">
+                    <a href="home.html"><button>Close</button></a>
+                </div>
+            </div>
+            <div id="swipeArea"></div>
+            <div class="dSelected" id="selector"></div>
+            <!-- The arrow that guides the user for the very first level -->
+            <div id="introtutorial"></div>
+            <table id="board">
+                <tbody id="board_body">
+                    <tr>
+                        <td colspan="1"><a id="level" class="light poiret center">level #</a></td>
+                        <td colspan="1" class="center">
+                            <a id="watch" class="light poiret center"> </a>
+                        </td>
+                        <td colspan="1">
+                            <a id="moves" class="light poiret center"> </a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="cell center" data-x="0" data-y="0">4</td>
+                        <td class="cell center" data-x="1" data-y="0">4</td>
+                        <td class="cell center" data-x="2" data-y="0">4</td>
+                    </tr>
+                    <tr>
+                        <td class="cell center" data-x="0" data-y="1">4</td>
+                        <td class="cell center" data-x="1" data-y="1">4</td>
+                        <td class="cell center" data-x="2" data-y="1">4</td>
+                    </tr>
+                    <tr>
+                        <td class="cell center" data-x="0" data-y="2">4</td>
+                        <td class="cell center selected" data-x="1" data-y="2">4</td>
+                        <td class="cell center" data-x="2" data-y="2">4</td>
+                    </tr>
+                    <tr>
+
+                        <td colspan="1" class="left">
+                            <a id="back_button" href="home.html" class="poiret"><img src="images/back.png" title="back to home" style="width:7vh;" /></a>
+                        </td>
+                        <td colspan="1" style="text-align: center;">
+                            <a onClick="togglePlay()" href="#">
+                                <img src="images/mute2.png" title="Toggle Music ON/OFF" id="sound" />
+                            </a>
+                        </td>
+                        <td colspan="1" class="right">
+                            <a id="reset" href="#" class="poiret"><img src="images/reset.png" title="Restart Game" style="width:7vh;" /></a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+        </div>
+        <audio id="myAudio" src="gametheme.mp3" preload="auto">
+      </audio>
+        <div id="level_overlay">
+            <div id="level_overlay_text">
+                <div class="g-signin2" data-onsuccess="handleAuthResult">Sign in to view leaderboard</div>
+                <div id="level_number" class="light poiret center"> </div>
+                <div id="level_best_score"> </div>
+                <div id="level_your_score"> </div>
+                <div id="level_moves"> </div>
+                <div id="level_watch"> </div>
+                <div id="close_overlay" class="btnclose"> Next </div>
+
+            </div>
+        </div>
+        <div id="hints" style="display: none">
+            <p class="light poiret center">Hiiiiiint</p>
+        </div>
+        <!--  // commented the ads drawal  -->
+        <div style="text-align:center;margin:1vh;">
+            <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+
+            <ins class="adsbygoogle" style="display:inline-block;width:320px;height:100px" data-ad-client="ca-app-pub-6030569595197388" data-ad-slot="4895663063"></ins>
+            <script>
+                (adsbygoogle = window.adsbygoogle || []).push({});
+            </script>
+        </div>
+    </div>
+    <!-- // commented the   Facebook Like Button drawal
+      <div class="fb-like" data-href="http://abefehr.com/parity/" data-layout="box_count" data-action="like" data-show-faces="true" data-share="false"></div>
+      <!-- End Facebook Like Button -->
+
+    <script>
+        var myAudio = document.getElementById("myAudio");
+        var isPlaying = false;
+        var sound = document.getElementById("sound");
+
+        function togglePlay() {
+            if (isPlaying) {
+                myAudio.pause()
+                sound.src = "images/mute2.png";
+            } else {
+                myAudio.play();
+                sound.src = "images/lound2.png";
+            }
+        };
+        myAudio.onplaying = function() {
+            isPlaying = true;
+        };
+        myAudio.onpause = function() {
+            isPlaying = false;
+        };
+    </script>
+</body>
+
 </html>
