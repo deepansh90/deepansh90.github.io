@@ -2,9 +2,9 @@
 <html>
 
 <head>
-    <title>Equalize</title>
+    <title>EQUALIZE</title>
     <!--Google play services-->
-    <script src="scripts/modules/google-api.js"></script>
+	 <script src="scripts/modules/google-api.js"></script>
     <meta name="google-signin-client_id" content="37577202708-pe4bn8r7sun8fq2ropnjqf79pi5c6g9v.apps.googleusercontent.com" />
     <meta name="google-signin-cookiepolicy" content="single_host_origin" />
     <meta name="google-signin-callback" content="signinCallback" />
@@ -17,7 +17,7 @@
     <meta property="fb:app_id" content="916448168386651" />
     <meta property="og:url" content="http://abefehr.com/parity/" />
     <meta property="og:type" content="website" />
-    <meta property="og:title" content="Equalize" />
+    <meta property="og:title" content="EQUALIZE" />
     <meta property="og:description" content="An addicting numbers puzzle game.">
     <meta name="description" content="An addicting numbers puzzle game.">
     <!-- commented minify js drawal End Facebook Metadata
@@ -25,19 +25,18 @@
     <script src="scripts/lib/jquery-2.1.1.min.js"></script>
     <script src="scripts/lib/jquery.touchSwipe.min.js"></script>
     <script src="scripts/core.js"></script>
-    <script src="scripts/modules/tutorial.js"></script>
-    <!--<script src="scripts/modules/Board.js"></script>-->
+    <script src="scripts/modules/Board.js"></script>
     <script src="scripts/modules/Keyboard.js"></script>
     <script src="scripts/modules/Manager.js"></script>
     <script src="scripts/modules/Overlay.js"></script>
     <script src="scripts/modules/Selector.js"></script>
-    <script src="scripts/modules/stateTutorial.js"></script>
-    <script src="scripts/modules/tutorial_story.js"></script>
+    <script src="scripts/modules/StateData.js"></script>
+    <script src="scripts/modules/Story.js"></script>
     <script src="scripts/modules/Swipe.js"></script>
     <script src="scripts/modules/Window.js"></script>
     <script src="scripts/modules/utilities.js"></script>
     <script src="scripts/modules/scores.js"></script>
-
+   
 
     <link href='https://fonts.googleapis.com/css?family=Poiret+One|Open+Sans' rel='stylesheet' type='text/css'>
     <link href="styles/style.css" rel="stylesheet" type="text/css" />
@@ -77,6 +76,7 @@
         Clay('init', {
             gameId: '8304'
         })
+
     </script>
     <!-- commented drawal Begin Facebook SDK 
       <script>
@@ -107,16 +107,17 @@
                     console.log('User signed out.');
                 });
             }
+
         </script>
 
-        <p id="title" class="light poiret center">Equalize</p>
+        <p id="title" class="light poiret center">EQUALIZE</p>
         <div id="box">
             <div id="overlay">
                 <h1></h1>
                 <div id="content"></div>
                 <!-- this button is in a holder so that I can center it and control its height properly -->
                 <div id="holder">
-                    <a href="index.html"><button>Close</button></a>
+                     <button> </button>
                 </div>
             </div>
             <div id="swipeArea"></div>
@@ -152,7 +153,7 @@
                     <tr>
 
                         <td colspan="1" class="left">
-                            <a id="back_button" href="index.html" class="poiret"><img src="images/back.png" title="back to home" style="width:7vh;" /></a>
+                            <a id="back_button" href="index.html" class="poiret"><img src="images/back.png" title="back to home" style="width:5vh;" /></a>
                         </td>
                         <td colspan="1" style="text-align: center;">
                             <a onClick="togglePlay()" href="#">
@@ -160,11 +161,12 @@
                             </a>
                         </td>
                         <td colspan="1" class="right">
-                            <a id="reset" href="#" class="poiret"><img src="images/reset.png" title="Restart Game" style="width:7vh;" /></a>
+                            <a id="reset" href="#" class="poiret"><img src="images/reset.png" title="Restart Game" style="width:5vh;" /></a>
                         </td>
                     </tr>
                 </tbody>
             </table>
+
 
         </div>
         <audio id="myAudio" src="gametheme.mp3" preload="auto">
@@ -181,16 +183,14 @@
 
             </div>
         </div>
-        <div id="hints" style="display: none">
-            <p class="light poiret center">Hiiiiiint</p>
-        </div>
-        <!--  // commented the ads drawal  -->
+         <!--  // commented the ads drawal  -->
         <div style="text-align:center;margin:1vh;">
             <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 
             <ins class="adsbygoogle" style="display:inline-block;width:320px;height:100px" data-ad-client="ca-app-pub-6030569595197388" data-ad-slot="4895663063"></ins>
             <script>
                 (adsbygoogle = window.adsbygoogle || []).push({});
+
             </script>
         </div>
     </div>
@@ -218,6 +218,7 @@
         myAudio.onpause = function() {
             isPlaying = false;
         };
+
     </script>
 </body>
 
