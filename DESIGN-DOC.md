@@ -1,6 +1,6 @@
 #Design Documentation
 
-Parity is a number puzzles game written in JavaScript. This document is to provide the technical documentation for how each of it's components can interact with each other
+Equalize is a number puzzles game written in JavaScript. This document is to provide the technical documentation for how each of it's components can interact with each other
 
 ##Core(core.js)
 This game is run by a core engine which contains the mediator and potentially some subscriptions to other components
