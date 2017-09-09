@@ -262,6 +262,38 @@ var Board = (function() {
             }
     }
 
+    function callSwipe(dir) {
+        called = true;
+        if (dir == keys[sol[cpt]]) {
+            tutoCall = true;
+            window["Board"][sol[cpt]]();
+            tutoCall = false;
+            $("#hints p").html("Move your cursor to the " + sol[++cpt] + " to increase the " + sol[cpt] + " box's value by 1");
+        } else {
+            $("#hints p").html("Wrong input given. Move your cursor to the " + sol[cpt] + " to increase the " + sol[cpt] + " box's value by 1");
+        }
+    }
+
+    // Selects the cell to the left of the current cell
+    function leftS() {
+        callSwipe(37);
+    }
+
+    // Selects the cell above the current cell
+    function upS() {
+        callSwipe(38);
+    }
+
+    // Selects the cell to the right of the current cell
+    function rightS() {
+        callSwipe(39);
+    }
+
+    // Selects the cell under the current cell
+    function downS() {
+        callSwipe(40);
+    }
+
     // Selects a cell and modifies it's value if necessary
     function select(x, y) {
         moves_per_level++;
@@ -425,6 +457,10 @@ var Board = (function() {
         down: down,
         left: left,
         right: right,
+        upS: upS,
+        downS: downS,
+        leftS: leftS,
+        rightS: rightS,
         reset: reset,
         setNumLevels: setNumLevels,
         setInactive: setInactive,
@@ -448,14 +484,14 @@ Board.subscribe('board_set_inactive', Board.setNumLevels);
 
 // Listen to the keyboard so the selector can be moved
 Board.subscribe('controls_key_down', Board.down);
-Board.subscribe('controls_key_left', Board.left);
+Board.subscribe('controls_key_left', Board.leftS);
 Board.subscribe('controls_key_right', Board.right);
 Board.subscribe('controls_key_up', Board.up);
 
-Board.subscribe('swipe_down_board', Board.down);
-Board.subscribe('swipe_left_board', Board.left);
-Board.subscribe('swipe_right_board', Board.right);
-Board.subscribe('swipe_up_board', Board.up);
+Board.subscribe('swipe_down_board', Board.downS);
+Board.subscribe('swipe_left_board', Board.leftS);
+Board.subscribe('swipe_right_board', Board.rightS);
+Board.subscribe('swipe_up_board', Board.upS);
 
 // Listen to the keyboard for extra functionality
 Board.subscribe('controls_key_r', Board.reset);
@@ -467,16 +503,15 @@ Board.subscribe('story_num_levels', Board.setNumLevels);
 Board.subscribe('loader_dom_ready', Board.domReady);
 
 function startTutorial() {
-    var keys = { left: 37, up: 38, right: 39, down: 40 }
     $("#hints").show();
-    $("#hints p").html("Move your cursor to the the " + sol[cpt] + " to increase the " + sol[cpt] + " box's value by 1");
+    $("#hints p").html("Move your cursor to the " + sol[cpt] + " to increase the " + sol[cpt] + " box's value by 1");
     handler = function(event) {
         called = true;
         if (event.keyCode == keys[sol[cpt]]) {
             tutoCall = true;
             window["Board"][sol[cpt]]();
             tutoCall = false;
-            $("#hints p").html("Move your cursor to the the " + sol[++cpt] + " to increase the " + sol[cpt] + " box's value by 1");
+            $("#hints p").html("Move your cursor to the " + sol[++cpt] + " to increase the " + sol[cpt] + " box's value by 1");
         } else {
             $("#hints p").html("Wrong input given. Move your cursor to the " + sol[cpt] + " to increase the " + sol[cpt] + " box's value by 1");
         }
