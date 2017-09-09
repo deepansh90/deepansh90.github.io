@@ -61,23 +61,19 @@ div#scoresListDiv {
 #level_overlay {
 	border:12px #f59563 solid;   
     padding:3px;
-    border-radius:40px;
+    border-radius:20px;
     position: fixed;
     display: none;
-    width: 50%;
+    width: 60%;
     height: 80%;
     top: 5%;
-    left: 34%;
+    left: 20%;
     right: 0;
     bottom: 0;
     z-index: 2;
     overflow: auto;
 }
-.g-signin2
-{
-  display: table;
-  margin: auto;
-}
+
 
 #level_overlay_text{
     position: absolute;
@@ -452,7 +448,7 @@ div#scoresListDiv {
   -moz-border-radius: 28;
   border-radius: 28px;
   font-size: 28px;
-  background: #f59563;
+  background: #009688;
   cursor:pointer;
   padding: 5px 20px 10px 20px;
   text-decoration: none;
@@ -460,7 +456,7 @@ div#scoresListDiv {
 }
 
 .btnclose:hover {
-	background-color:#3e474f;
+	background-color:#5AAE5D;
 }
 
 @media only screen and (max-width : 480px) {
