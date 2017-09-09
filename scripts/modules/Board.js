@@ -38,11 +38,12 @@ leaderboards.createScoresList1 = function(root, scores, listType) {
     }
 
     var tab = document.createElement('table');
-     var caption = tab.createCaption();
+     
     if (listType == "local") {
         tab.className = 'table m-t-110';
-        caption.innerHTML = "<b>Your Score!! </b>";
+        //saving space 	caption.innerHTML = "<b>Your Score!! </b>";
     } else {
+		var caption = tab.createCaption();
         tab.className = 'table m-t-20'; 
          caption.innerHTML = "<b>Global Best!!</b>";
     }
@@ -145,7 +146,7 @@ var Board = (function () {
             var root = document.getElementById('level_your_score');
             root.innerHTML = "";
             var itemArray = [
-                              ['Score', currentScore],
+                              ['Your Score', currentScore],
 							  ['Moves', moves_per_level],
                               ['Time', minutes + ":" + seconds]                             
                             ];

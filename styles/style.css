@@ -80,13 +80,14 @@ div#scoresListDiv {
 }
 
 #level_overlay_text{
-  position: absolute;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  margin: auto;
-  color: #333;
-  right: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    font-size: 40px;
+	margin: auto;
+    color: #333;
+    transform: translate(-50%,-50%);
+    -ms-transform: translate(-50%,-50%);
 }
 
 /* End HTML element styling */
@@ -107,9 +108,9 @@ div#scoresListDiv {
 #level_best_score,
 #level_your_score,
 #level_moves {
-    font-size: 4vh;
+    font-size: 3.5vh;
     font-weight: bold;
-  padding-top: 10%;
+  padding-top: 5%;
     color: antiquewhite;
 }
 
@@ -318,7 +319,7 @@ div#scoresListDiv {
 
 
 .tdclass{
-	padding:9px;
+	padding:4px;
 	color: #ffffff;
 	border: 1px solid #ffffff;
 	text-align: left;
