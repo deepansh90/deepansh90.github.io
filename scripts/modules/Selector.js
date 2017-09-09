@@ -7,19 +7,50 @@ var Selector = (function() {
   };
 
   var snapTo = function(x, y) {
+    setupSwipeArea();
     coordinates.x = x;
     coordinates.y = y;
+    var cell = $('td[data-x="' + x + '"][data-y="' + y + '"]');
+    var borderWidth = 2;
     selector.animate({
-      top: $('td[data-x="' + x + '"][data-y="' + y + '"]').offset().top + 'px',
-      left: $('td[data-x="' + x + '"][data-y="' + y + '"]').offset().left + 'px'
+      top: cell.offset().top - cell.offsetParent().offset().top + 'px',
+      left: cell.offset().left - cell.offsetParent().offset().left + 'px',
+      width: cell.outerWidth(),
+      height: cell.outerHeight()
     }, 100, function() {
       //todo when complete
     });
   };
-
+  $(window).on("resize", setupSwipeArea);
+  var setupSwipeArea = function () {
+    var trs = $("#board_body").find("tr");
+    var height = $(trs[4]).offset().top - $(trs[1]).offset().top;
+    var width = $(trs[4]).width();
+    var top = $(trs[1]).offset().top;
+    var left = $(trs[1]).offset().left;
+    $("#swipeArea").css({
+      height: height,
+      width: width,
+      top: top,
+      left: left
+    });
+  }
   var resnap = function() {
+    setupSwipeArea();
+    var cell = $('td[data-x="' + coordinates.x + '"][data-y="' + coordinates.y + '"]');
+    var borderWidth = 2;
+    selector.animate({
+      top: cell.offset().top - cell.offsetParent().offset().top + 'px',
+      left: cell.offset().left - cell.offsetParent().offset().left + 'px',
+      width: cell.outerWidth(),
+      height: cell.outerHeight()
+    }, 100, function() {
+      //todo when complete
+    });
+    /*
     selector.css('top', $('td[data-x="' + coordinates.x + '"][data-y="' + coordinates.y + '"]').offset().top + 'px');
     selector.css('left', $('td[data-x="' + coordinates.x + '"][data-y="' + coordinates.y + '"]').offset().left + 'px');
+    */
   };
 
   var fadeIn = function() {
