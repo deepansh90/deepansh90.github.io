@@ -1,6 +1,7 @@
 var profile_name;
 var leaderboards = leaderboards || {};
 var utilities = utilities || {};
+var keys = { left: 37, up: 38, right: 39, down: 40 }
 
 var numeroLevel, sol, called = false,
     cpt = 0;
