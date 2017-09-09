@@ -64,23 +64,29 @@ div#scoresListDiv {
     border-radius:40px;
     position: fixed;
     display: none;
-    width: 30%;
+    width: 50%;
     height: 80%;
     top: 5%;
     left: 34%;
     right: 0;
     bottom: 0;
     z-index: 2;
+    overflow: auto;
+}
+.g-signin2
+{
+  display: table;
+  margin: auto;
 }
 
 #level_overlay_text{
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    font-size: 40px;
-    color: #333;
-    transform: translate(-50%,-50%);
-    -ms-transform: translate(-50%,-50%);
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  margin: auto;
+  color: #333;
+  right: 0;
 }
 
 /* End HTML element styling */
