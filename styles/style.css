@@ -283,6 +283,11 @@ div#scoresListDiv {
     width: 100%;
     heigth: 100%;
 }
+
+#hints{
+	margin: 2vh;
+}
+
 .m-t-110{
 	border: 1px solid #222;
 	float:none;
@@ -373,7 +378,7 @@ div#scoresListDiv {
 }
 
 .light {
-    color: #64c5f5;
+    color: #ffffff;
 }
 
 .black {
