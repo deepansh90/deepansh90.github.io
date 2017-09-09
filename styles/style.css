@@ -59,15 +59,14 @@ div#scoresListDiv {
 }
 
 #level_overlay {
+	background: black;
 	border:4px #f59563 solid;   
     padding:3px;
     border-radius:40px;
     position: fixed;
     display: none;
-    width: 70%;
-    height: 90%;
-    top: 2%;
-    left: 15%;
+    top: 0%;
+    left: 0%;
     right: 0;
     bottom: 0;
     z-index: 2;

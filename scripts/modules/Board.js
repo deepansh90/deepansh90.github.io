@@ -151,7 +151,7 @@ var Board = (function () {
                               ['Time', minutes + ":" + seconds]                             
                             ];
             leaderboards.createScoresList1(root, itemArray, "local");
-            level_number.html('Level ' + level.number);
+            level_number.html('Level ' + level.number + ' Completed !');
 			level_best_score.html("");
             // Hide the intro tutorial if needbe
 
