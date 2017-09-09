@@ -83,9 +83,8 @@ div#scoresListDiv {
 /* Begin IDs */
 
 #title {
-  font-size:6.9vh;
-  font-weight:bold;
-  margin-top:1vh;
+  font-size:6vh;
+  margin-top:-1vh;
 }
 #level_number {
   font-size:5.9vh;
@@ -121,7 +120,7 @@ div#scoresListDiv {
 #box {
   background-color:#323A45;
   overflow:hidden;
-  height:79vh;
+  height:69vh;
 }
 
 #level {
@@ -439,7 +438,7 @@ div#scoresListDiv {
 
 @media only screen and (max-width : 480px) {
 #level_overlay {
-    border: 12px #FFA300 solid;
+    border: 12px #f59563 solid;
     padding: 3px;
     border-radius: 40px;
     position: fixed;
