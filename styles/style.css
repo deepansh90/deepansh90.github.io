@@ -60,17 +60,19 @@ div#scoresListDiv {
 
 #level_overlay {
 	background: black;
-	border:4px #f59563 solid;   
-    padding:3px;
-    border-radius:40px;
-    position: fixed;
-    display: none;
-    top: 0%;
-    left: 0%;
-    right: 0;
-    bottom: 0;
-    z-index: 2;
-    overflow: auto;
+	border:4px #f59563 solid;
+	padding:3px;
+	border-radius:40px;
+	position: fixed;
+	display: none;
+	top: 0%;
+	left: 0%;
+	margin: auto;
+	max-width: 70%;
+	right: 0;
+	bottom: 0;
+	z-index: 2;
+	overflow: auto;
 }
 
 
@@ -461,16 +463,9 @@ div#scoresListDiv {
 @media only screen and (max-width : 480px) {
 #level_overlay {
     border: 12px #f59563 solid;
-    padding: 3px;
-    border-radius: 40px;
     position: fixed;
     display: none;
-    width: 60% !important;
-    height: 90% !important;
-    top: 5%;
-    left: 18% !important;
-    right: 0;
-    bottom: 0;
+    max-width: 100%;
     z-index: 2;
 }
 #homeImage
