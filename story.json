@@ -1,20 +1,20 @@
-[
-  {
+[  
+	{
     "type": "instruction",
     "title": "How to play",
-    "text": "Equalize is a numbers puzzle game.\nThe aim of the game is to get each number on a 3x3 board of numbers to be exactly the same.",
+    "text": "Equalize is numbers puzzle game.\nThe aim of the game is to make all nine numbers exactly same",
     "button": "okay..."
   },
   {
     "type": "instruction",
     "title": "How to play",
-    "text": "One of the numbers is always selected. This number can be moved by using the arrow keys",
+    "text": "One of the numbers is always selected. This selected box can be moved by using arrow keys or by swiping in any direction",
     "button": "sounds easy"
   },
   {
     "type": "instruction",
     "title": "How to play",
-    "text": "Each time you move the selector, the number you select will increase in number by one.",
+    "text": "Each time you move the selector, value of new selected box will be increased by one. Make all nine numbers equal as fast as possible.",
     "button": "I got this!"
   },
   {

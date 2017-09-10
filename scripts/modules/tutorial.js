@@ -341,7 +341,7 @@ var Board = (function() {
             else {
                 cpt = 0;
                 sol = ['down', 'down', 'right', 'right', 'up', 'left', 'up'];
-                $("#hints p").html("Move your cursor to the " + sol[cpt] + " to increase the " + sol[cpt] + " box's value by 1");
+                $("#hints p").html("Hint: Move selected green box to " + sol[cpt] + " to increase value of " + sol[cpt] + "ward box by 1");
             }
             if (!called)
                 startTutorial();
@@ -505,16 +505,16 @@ Board.subscribe('loader_dom_ready', Board.domReady);
 
 function startTutorial() {
     $("#hints").show();
-    $("#hints p").html("Hint: Move selected green box to " + sol[cpt] + " to increase " + sol[cpt] + " box's value by 1");
+    $("#hints p").html("Hint: Move selected green box to " + sol[cpt] + " to increase value of " + sol[cpt] + "ward box by 1");
     handler = function(event) {
         called = true;
         if (event.keyCode == keys[sol[cpt]]) {
             tutoCall = true;
             window["Board"][sol[cpt]]();
             tutoCall = false;
-            $("#hints p").html("Hint: Move selected green box to " + sol[++cpt] + " to increase " + sol[cpt] + " box's value by 1");
+            $("#hints p").html("Hint: Move selected green box to " + sol[++cpt] + " to increase value of " + sol[cpt] + "ward box by 1");
         } else {
-            $("#hints p").html("Hint: Wrong input. Move selected green box to " + sol[cpt] + " to increase " + sol[cpt] + " box's value by 1");
+            $("#hints p").html("Hint: Wrong input. Move selected green box to " + sol[cpt] + " to increase value of " + sol[cpt] + "ward box by 1");
         }
     }
     document.addEventListener('keydown', handler);
