@@ -3,13 +3,13 @@
     "type": "instruction",
     "title": "How to play",
     "text": "Equalize is numbers puzzle game.\nThe aim of the game is to make all nine numbers exactly same",
-    "button": "okay..."
+    "button": "Okay"
   },
   {
     "type": "instruction",
     "title": "How to play",
     "text": "One of the numbers is always selected. This selected box can be moved by using arrow keys or by swiping in any direction",
-    "button": "sounds easy"
+    "button": "Sounds Easy"
   },
   {
     "type": "instruction",
