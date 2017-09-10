@@ -38,12 +38,11 @@ leaderboards.createScoresList1 = function(root, scores, listType) {
     }
 
     var tab = document.createElement('table');
-	
+	var caption = tab.createCaption();
     if (listType == "local") {
         tab.className = 'table m-t-110';
-        //saving space 	caption.innerHTML = "<b>Your Score!! </b>";
+        caption.innerHTML = "<b>Your Score!! </b>";
     } else {
-		var caption = tab.createCaption();
         tab.className = 'table m-t-20'; 
          caption.innerHTML = "<b>Global Best!!</b>";
     }
